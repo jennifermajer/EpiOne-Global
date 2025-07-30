@@ -2,7 +2,7 @@
 
 This project includes:
 
-- A Shiny app (`app/`) to visualize and explore patient-level data
+- A Shiny app (`app/`) to visualize and explore consultation data from health facilities
 - An R Markdown report (`reports/`) for static reporting
 - A shared `data_loader.R` function to use either live API data or cached local `.rds` files
 - Secure configuration using `config/config.yml`
