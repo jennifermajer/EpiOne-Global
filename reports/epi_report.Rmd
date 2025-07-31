@@ -21,8 +21,8 @@ params:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
-  echo = FALSE, 
-  warning = FALSE, 
+  echo = FALSE,
+  warning = FALSE,
   message = FALSE,
   fig.align = "center",
   cache = FALSE
@@ -60,7 +60,7 @@ cfg <- config::get(config = params$config_env)
 # Load raw data
 log_info("Loading DHIS2 data...")
 raw_data <- load_dhis2_data(
-  force_refresh = params$force_refresh, 
+  force_refresh = params$force_refresh,
   config_env = params$config_env
 )
 
@@ -88,7 +88,7 @@ This report presents an analysis of health facility consultations based on data 
 # Key metrics for executive summary
 total_consultations % filter(year == max(year, na.rm = TRUE))
 current_year_consultations %
-  count(morbidity_category, sort = TRUE) %>%
+count(morbidity_category, sort = TRUE) %>%
   slice_head(n = 3)
 ```
 
@@ -101,10 +101,10 @@ current_year_consultations %
 
 ```{r data-quality-warnings}
 if (length(validation_results$warnings) > 0) {
-  cat("### Data Quality Notes\n")
-  for (warning in validation_results$warnings) {
-    cat("-", warning, "\n")
-  }
+cat("### Data Quality Notes\n")
+for (warning in validation_results$warnings) {
+cat("-", warning, "\n")
+}
 }
 ```
 
