@@ -1,0 +1,26 @@
+# R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Data files
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Credentials
+config/secrets.yml
+*.env
+
+# Output files
+output/
+*.html
+*.pdf
+
+# Temporary files
+*~
+*.tmp
+*.log

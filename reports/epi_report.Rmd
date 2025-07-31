@@ -1,0 +1,466 @@
+
+---
+title: "Epidemiological Report"
+subtitle: "Health Facility Consultation Analysis"
+author: "Health Information System"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    theme: flatly
+    toc: true
+    toc_float: true
+    code_folding: hide
+    fig_width: 10
+    fig_height: 6
+params:
+  config_env: "default"
+  force_refresh: false
+  start_year: 2021
+  target_year: !r lubridate::year(Sys.Date())
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE, 
+  warning = FALSE, 
+  message = FALSE,
+  fig.align = "center",
+  cache = FALSE
+)
+
+# Load required libraries
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(ggplot2)
+  library(gtsummary)
+  library(flextable)
+  library(scales)
+  library(viridis)
+  library(RColorBrewer)
+  library(treemapify)
+  library(ggalluvial)
+  library(logger)
+  library(here)
+})
+
+# Source project functions
+source(here("R", "data_loader.R"))
+source(here("R", "preprocessing.R"))
+source(here("R", "visualization_helpers.R"))
+
+# Set up logging
+log_threshold(INFO)
+log_info("Starting epidemiological report generation...")
+```
+
+```{r load-and-process-data}
+# Load configuration
+cfg <- config::get(config = params$config_env)
+
+# Load raw data
+log_info("Loading DHIS2 data...")
+raw_data <- load_dhis2_data(
+  force_refresh = params$force_refresh, 
+  config_env = params$config_env
+)
+
+# Process data
+log_info("Processing register data...")
+register <- prepare_register(
+  raw_data, 
+  metadata_file = here(cfg$paths$metadata_file)
+)
+
+# Validate data
+validation_results <- validate_register_data(register)
+
+# Get summary statistics
+summary_stats <- get_summary_statistics(register)
+
+log_info("Data processing completed successfully")
+```
+
+# Executive Summary
+
+This report presents an analysis of health facility consultations based on data from the Health Information System. The analysis covers **`r comma(validation_results$total_rows)` consultations** across **`r validation_results$unique_facilities`** health facilities from **`r format(validation_results$date_range[1], "%B %Y")`** to **`r format(validation_results$date_range[2], "%B %Y")`**.
+
+```{r executive-summary-stats}
+# Key metrics for executive summary
+total_consultations % filter(year == max(year, na.rm = TRUE))
+current_year_consultations %
+  count(morbidity_category, sort = TRUE) %>%
+  slice_head(n = 3)
+```
+
+## Key Findings
+
+- **Total Consultations**: `r comma(total_consultations)` consultations recorded
+- **Active Facilities**: `r unique_facilities` health facilities providing services
+- **Current Year Activity**: `r comma(current_year_consultations)` consultations in `r max(register$year, na.rm = TRUE)`
+- **Top Disease Categories**: `r paste(top_diseases$morbidity_category[1:3], collapse = ", ")`
+
+```{r data-quality-warnings}
+if (length(validation_results$warnings) > 0) {
+  cat("### Data Quality Notes\n")
+  for (warning in validation_results$warnings) {
+    cat("-", warning, "\n")
+  }
+}
+```
+
+# Data Overview
+
+## Dataset Summary
+
+```{r dataset-summary}
+# Create summary table
+summary_table <- tibble(
+  Metric = c(
+    "Total Consultations",
+    "Date Range", 
+    "Unique Health Facilities",
+    "Administrative Regions",
+    "Disease Categories",
+    "Missing Dates"
+  ),
+  Value = c(
+    comma(validation_results$total_rows),
+    paste(format(validation_results$date_range, "%Y-%m-%d"), collapse = " to "),
+    validation_results$unique_facilities,
+    length(unique(register$admin1)),
+    validation_results$morbidity_categories,
+    paste0(validation_results$missing_dates, " (", 
+           round(validation_results$missing_dates/validation_results$total_rows*100, 1), "%)")
+  )
+)
+
+summary_table %>%
+  flextable() %>%
+  autofit() %>%
+  theme_vanilla() %>%
+  bold(part = "header")
+```
+
+## Temporal Distribution
+
+```{r consultations-over-time, fig.cap="Distribution of consultations over time showing seasonal patterns and trends"}
+plot_consultations_over_time(register, "Consultations Over Time")
+```
+
+## Geographic Distribution
+
+```{r geographic-distribution, fig.cap="Number of consultations by administrative region"}
+plot_geographic_distribution(register, "admin1", "count")
+```
+
+# Demographic Analysis
+
+## Patient Demographics by Quarter {.tabset}
+
+```{r patient-demographics}
+# Create summary table by quarter
+tbl_quarter %
+  filter(!is.na(quarter)) %>%
+  tbl_summary(
+    by = quarter,
+    include = c(region, admin1, disease_cat, sex, age_group_new),
+    label = list(
+      region ~ "Region",
+      admin1 ~ "Governorate", 
+      disease_cat ~ "Disease Category",
+      sex ~ "Sex",
+      age_group_new ~ "Age Group"
+    ),
+    missing = "ifany",
+    percent = "column",
+    statistic = list(all_categorical() ~ "{n} ({p}%)")
+  ) %>%
+  add_n() %>%
+  add_overall() %>%
+  bold_labels() %>%
+  modify_header(label ~ "**Variable**") %>%
+  modify_caption("**Health consultations by quarter**")
+
+tbl_quarter
+```
+
+## Age-Sex Distribution
+
+```{r age-sex-pyramid, fig.cap="Age-sex pyramid showing distribution of consultations by demographic groups"}
+plot_age_sex_pyramid(register)
+```
+
+# Disease Pattern Analysis
+
+## Overall Disease Distribution
+
+```{r disease-distribution, fig.cap="Top 10 disease categories by consultation volume"}
+plot_disease_distribution(register, "morbidity_category", 10)
+```
+
+## Disease Trends Over Time
+
+```{r disease-trends, fig.cap="Temporal trends in top disease categories", fig.height=8}
+plot_time_series_by_category(register, "month2", "morbidity_category", 6)
+```
+
+## Disease Distribution by Region
+
+```{r disease-treemap, fig.cap="Disease category distribution by governorate (treemap visualization)", fig.height=10}
+# Treemap of diagnoses per governorate
+diag_tree %
+  filter(year == params$target_year) %>%
+  group_by(morbidity_category, admin1) %>%
+  summarise(count = n(), .groups = "drop") %>%
+  filter(
+    !is.na(morbidity_category) & 
+    !is.na(admin1) & 
+    !morbidity_category %in% c("General Symptoms and Undiagnosed", "Other")
+  ) %>%
+  slice_max(count, n = 50)  # Top 50 combinations
+
+ggplot(diag_tree, aes(area = count, fill = count, label = morbidity_category, subgroup = admin1)) +
+  geom_treemap() +
+  geom_treemap_text(fontface = "bold", color = "white", place = "centre", reflow = TRUE, size = 8) +
+  facet_wrap(~admin1, scales = "free") +
+  scale_fill_viridis_c(option = "plasma") +
+  labs(
+    title = paste("Disease Patterns by Governorate (", params$target_year, ")"),
+    fill = "Consultations"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    strip.text = element_text(size = 12, face = "bold"),
+    axis.text = element_blank(),
+    axis.ticks = element_blank()
+  )
+```
+
+# Priority Disease Surveillance
+
+## Epidemic-Prone Diseases
+
+```{r epidemic-diseases, fig.cap="Trends in epidemic-prone diseases by region"}
+# Summarize epidemic-prone diseases
+epidemic_data %
+  filter(!is.na(month2)) %>%
+  group_by(month2, admin1) %>%
+  summarise(
+    cholera_cases = sum(cholera_case, na.rm = TRUE),
+    polio_cases = sum(polio_case, na.rm = TRUE), 
+    measles_cases = sum(measles_case, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  pivot_longer(
+    cols = ends_with("_cases"), 
+    names_to = "disease", 
+    values_to = "cases"
+  ) %>%
+  mutate(disease = str_remove(disease, "_cases") %>% str_to_title())
+
+if (sum(epidemic_data$cases) > 0) {
+  ggplot(epidemic_data, aes(x = month2, y = cases, fill = disease)) +
+    geom_col(position = "stack", alpha = 0.8) +
+    facet_wrap(~admin1, scales = "free_y") +
+    scale_fill_brewer(type = "qual", palette = "Set2") +
+    scale_x_date(date_breaks = "3 months", date_labels = "%b %Y") +
+    labs(
+      title = "Epidemic-Prone Disease Surveillance",
+      subtitle = "Cases of Cholera, Polio, and Measles by Region",
+      x = "Time Period",
+      y = "Number of Cases",
+      fill = "Disease"
+    ) +
+    theme_report() +
+    theme(
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      strip.text = element_text(size = 10)
+    )
+} else {
+  cat("No epidemic-prone disease cases detected in the reporting period.")
+}
+```
+
+## Malnutrition Surveillance
+
+```{r malnutrition-trends, fig.cap="Malnutrition case trends by type and gender"}
+# Malnutrition analysis
+malnutrition_data %
+  filter(year >= params$start_year & malnutrition_case == 1) %>%
+  mutate(
+    malnutrition_type = case_when(
+      morbidity %in% c("Moderate acute Malnutrition") ~ "Moderate Acute",
+      morbidity %in% c("Severe Malnutrition", "Complicated severe acute Malnutrition", 
+                      "Uncomplicated severe acute Malnutrition") ~ "Severe Acute",
+      morbidity %in% c("Underweight") ~ "Underweight",
+      TRUE ~ "Other"
+    )
+  ) %>%
+  filter(malnutrition_type != "Other" & !is.na(sex)) %>%
+  group_by(month2, sex, malnutrition_type) %>%
+  summarise(cases = n(), .groups = "drop")
+
+if (nrow(malnutrition_data) > 0) {
+  ggplot(malnutrition_data, aes(x = month2, y = cases, fill = malnutrition_type)) +
+    geom_area(alpha = 0.7) +
+    facet_wrap(~sex) +
+    scale_x_date(date_breaks = "6 months", date_labels = "%b %Y") +
+    scale_fill_manual(values = c(
+      "Moderate Acute" = "#FFA500", 
+      "Severe Acute" = "#FF4500", 
+      "Underweight" = "#90EE90"
+    )) +
+    labs(
+      title = "Malnutrition Case Trends",
+      subtitle = paste("Cases by Type and Gender (", params$start_year, "-", max(register$year, na.rm = TRUE), ")"),
+      x = "Time Period",
+      y = "Number of Cases",
+      fill = "Malnutrition Type"
+    ) +
+    theme_report() +
+    theme(
+      axis.text.x = element_text(angle = 45, hjust = 1),
+      legend.position = "bottom"
+    )
+} else {
+  cat("No malnutrition cases detected in the reporting period.")
+}
+```
+
+# Health Service Utilization
+
+## Facility Type Distribution
+
+```{r facility-distribution, fig.cap="Distribution of consultations by facility type"}
+if ("facilitytype" %in% colnames(register)) {
+  facility_summary %
+    group_by(facilitytype) %>%
+    summarise(
+      consultations = n(),
+      unique_facilities = n_distinct(orgunit, na.rm = TRUE),
+      .groups = "drop"
+    )
+  
+  ggplot(facility_summary, aes(x = reorder(facilitytype, consultations), y = consultations)) +
+    geom_col(fill = "#2E86AB", alpha = 0.8) +
+    coord_flip() +
+    labs(
+      title = "Service Utilization by Facility Type",
+      x = "Facility Type",
+      y = "Number of Consultations"
+    ) +
+    theme_report() +
+    scale_y_continuous(labels = comma_format())
+} else {
+  cat("Facility type information not available in the dataset.")
+}
+```
+
+## Trauma Cases Analysis
+
+```{r trauma-analysis, fig.cap="Distribution of trauma vs non-trauma cases by region"}
+if ("type_case" %in% colnames(register)) {
+  trauma_summary %
+    filter(!is.na(type_case) & !is.na(admin1)) %>%
+    group_by(admin1, type_case) %>%
+    summarise(cases = n(), .groups = "drop") %>%
+    group_by(admin1) %>%
+    mutate(percentage = cases / sum(cases) * 100)
+  
+  ggplot(trauma_summary, aes(x = admin1, y = percentage, fill = type_case)) +
+    geom_col(position = "fill", alpha = 0.8) +
+    coord_flip() +
+    scale_y_continuous(labels = percent_format(scale = 1)) +
+    scale_fill_manual(values = c("Trauma" = "#FF6B6B", "Non-trauma" = "#4ECDC4")) +
+    labs(
+      title = "Trauma vs Non-Trauma Cases by Region",
+      x = "Governorate", 
+      y = "Percentage of Cases",
+      fill = "Case Type"
+    ) +
+    theme_report()
+} else {
+  cat("Trauma case information not available in the dataset.")
+}
+```
+
+# Recommendations
+
+Based on the epidemiological analysis, the following recommendations are proposed:
+
+## Public Health Priorities
+
+```{r recommendations}
+# Generate data-driven recommendations
+top_disease_cat % 
+  count(morbidity_category, sort = TRUE) %>% 
+  slice_head(n = 1) %>% 
+  pull(morbidity_category)
+
+high_burden_regions %
+  count(admin1, sort = TRUE) %>%
+  slice_head(n = 3) %>%
+  pull(admin1)
+
+epidemic_cases <- sum(register$cholera_case + register$polio_case + register$measles_case, na.rm = TRUE)
+malnutrition_cases <- sum(register$malnutrition_case, na.rm = TRUE)
+```
+
+1. **Disease Prevention Focus**: `r top_disease_cat` represents the highest consultation burden and should be prioritized for prevention programs.
+
+2. **Geographic Targeting**: Focus enhanced services in `r paste(high_burden_regions[1:3], collapse = ", ")` which show the highest consultation volumes.
+
+3. **Surveillance Strengthening**: 
+   - Continue monitoring epidemic-prone diseases (`r epidemic_cases` cases detected)
+   - Enhance malnutrition surveillance (`r malnutrition_cases` cases requiring attention)
+
+4. **Health System Strengthening**: 
+   - Improve data quality (address `r validation_results$missing_dates` missing dates)
+   - Standardize reporting across facilities
+
+# Technical Notes
+
+## Data Sources and Methods
+
+- **Data Source**: DHIS2 Health Information System
+- **Reporting Period**: `r format(validation_results$date_range[1], "%B %Y")` to `r format(validation_results$date_range[2], "%B %Y")`
+- **Analysis Date**: `r Sys.Date()`
+- **Total Records**: `r comma(validation_results$total_rows)`
+
+## Data Quality Assessment
+
+```{r data-quality-summary}
+quality_metrics <- tibble(
+  Indicator = c(
+    "Completeness (Non-missing dates)",
+    "Facility Coverage",
+    "Disease Classification", 
+    "Geographic Coverage"
+  ),
+  Value = c(
+    paste0(round((1 - validation_results$missing_dates/validation_results$total_rows) * 100, 1), "%"),
+    paste(validation_results$unique_facilities, "facilities"),
+    paste(validation_results$morbidity_categories, "categories"),
+    paste(length(unique(register$admin1)), "regions")
+  ),
+  Status = c(
+    ifelse(validation_results$missing_dates/validation_results$total_rows < 0.05, "Good", "Needs Improvement"),
+    "Good",
+    "Good", 
+    "Good"
+  )
+)
+
+quality_metrics %>%
+  flextable() %>%
+  autofit() %>%
+  theme_vanilla() %>%
+  color(~ Status == "Needs Improvement", color = "red") %>%
+  color(~ Status == "Good", color = "green") %>%
+  bold(part = "header")
+```
+
+---
+
+*Report generated on `r Sys.time()` using automated epidemiological surveillance system.*

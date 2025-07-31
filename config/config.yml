@@ -1,0 +1,65 @@
+### 📂 `config/config.yml`
+
+default:
+  # DHIS2 API Configuration
+  dhis2:
+    base_url: "https://dhis.medmis.org/api/"
+    username: "jlmajer"
+    password: "Shelly==West88!!" # Replace with the actual password or use environment variable
+    timeout: 30
+    retry_attempts: 3
+  
+  # Data Processing Parameters
+  parameters:
+    event_date: "2024-01-01_2025-07-30"
+    
+  # Caching Configuration
+  cache:
+    use_cache: true
+    cache_file: "data/dhis2_data.rds"
+    cache_expiry_hours: 24
+  
+  # File Paths
+  paths:
+    data_dir: "data"
+    output_dir: "output"
+    metadata_file: "data/Org Unit Metadata.xlsx"
+    shapefile_dir: "data/shapefiles/syr_admin_shp_utf8_20240711"
+  
+  # DHIS2 Dimensions
+  dimensions:
+    organizational_unit: "ou:IdcO8WRgjhx"
+    program_indicators:
+      - "CqrONYSlEaX.rL9MvoCfEjs"
+      - "CqrONYSlEaX.bZHezG9dWZE"
+      - "CqrONYSlEaX.KeEN2eb3Uxd"
+      - "CqrONYSlEaX.xomZ84KPnPF"
+      - "CqrONYSlEaX.EySm2BkOyyz"
+      - "CqrONYSlEaX.MfYvkQe0aQp"
+      - "CqrONYSlEaX.geYBzCRckiq"
+      - "CqrONYSlEaX.Yg03rKOllrD"
+      - "CqrONYSlEaX.Yp9KWU8p05o"
+      - "CqrONYSlEaX.j7Yq8VaaQRI"
+      - "CqrONYSlEaX.GOTb5Nqfn94"
+      - "CqrONYSlEaX.x22jBOk9i7P"
+      - "CqrONYSlEaX.ZZg8zkt8vcP"
+      - "CqrONYSlEaX.ebqQuNdzo0R"
+      - "CqrONYSlEaX.boB5hNdgFKe"
+      - "CqrONYSlEaX.abyW9VH1KeH"
+      - "CqrONYSlEaX.SQOesNuMq8L"
+    other_dimensions:
+      - "n3oqmlU8mkF"
+      - "akxW4S6B5KR"
+
+# Environment-specific configurations
+development:
+  cache:
+    use_cache: true
+  logging:
+    level: "DEBUG"
+
+production:
+  cache:
+    use_cache: false
+  logging:
+    level: "INFO"
