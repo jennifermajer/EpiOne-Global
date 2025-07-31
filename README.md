@@ -1,29 +1,16 @@
-# Epi Dashboard Test with DHIS2
+markdown# **Epi Dashboard Test with DHIS2**
 
-This project includes:
-
-- A Shiny app (`app/`) to visualize and explore consultation data from health facilities
-- An R Markdown report (`reports/`) for static reporting
-- A shared `data_loader.R` function to use either live API data or cached local `.rds` files
-- Secure configuration using `config/config.yml`
-
-## Usage
-
-- Set `use_api` in `config/config.yml` to `true` or `false`
-- Run the Shiny app via `app/app.R`
-- Knit the R Markdown report via `reports/epi_report.Rmd`
-
-Epi Dashboard Test with DHIS2
 A comprehensive health surveillance dashboard and reporting system for analyzing consultation data from health facilities using DHIS2 data.
-Features
 
-Interactive Shiny Dashboard (app/) - Real-time visualization and exploration of health facility data
-Automated R Markdown Reports (reports/) - Professional epidemiological reports with key insights
-Flexible Data Loading - Support for both live DHIS2 API data and cached local files
-Secure Configuration - Centralized configuration management with environment-specific settings
-Comprehensive Analysis - Disease surveillance, geographic analysis, demographic patterns, and outbreak detection
+## **Features**
 
-Project Structure
+- **Interactive Shiny Dashboard** (`app/`) - Real-time visualization and exploration of health facility data
+- **Automated R Markdown Reports** (`reports/`) - Professional epidemiological reports with key insights
+- **Flexible Data Loading** - Support for both live DHIS2 API data and cached local files
+- **Secure Configuration** - Centralized configuration management with environment-specific settings
+- **Comprehensive Analysis** - Disease surveillance, geographic analysis, demographic patterns, and outbreak detection
+
+## **Project Structure**
 epidashboard/
 ├── config/
 │   └── config.yml              # Configuration settings
@@ -41,24 +28,27 @@ epidashboard/
 │   ├── processed/             # Cleaned datasets
 │   └── metadata/              # Organizational metadata
 └── output/
-    ├── reports/               # Generated reports
-    └── plots/                 # Saved visualizations
-Prerequisites
-Required Software
+├── reports/               # Generated reports
+└── plots/                 # Saved visualizations
 
-R (>= 4.0.0) - Download R
-RStudio (recommended) - Download RStudio
-Pandoc (>= 1.12.3) - Required for R Markdown reports
+## **Prerequisites**
 
-Installing Pandoc
-Option 1: Install/Update RStudio (Recommended)
+### Required Software
+1. **R** (>= 4.0.0) - [Download R](https://cran.r-project.org/)
+2. **RStudio** (recommended) - [Download RStudio](https://www.rstudio.com/products/rstudio/download/)
+3. **Pandoc** (>= 1.12.3) - Required for R Markdown reports
 
-RStudio includes Pandoc automatically
-Download latest version from RStudio website
+### Installing Pandoc
 
-Option 2: Install Pandoc Separately
-macOS:
-bashbrew install pandoc
+**Option 1: Install/Update RStudio (Recommended)**
+- RStudio includes Pandoc automatically
+- Download latest version from [RStudio website](https://www.rstudio.com/products/rstudio/download/)
+
+**Option 2: Install Pandoc Separately**
+
+*macOS:*
+```bash
+brew install pandoc
 Windows:
 bashchoco install pandoc
 Linux:
@@ -157,45 +147,6 @@ load_dhis2_data(force_refresh = TRUE)
 
 # Check cache status
 file.info("data/raw/dhis2_data.rds")
-Troubleshooting
-Common Issues
-1. Pandoc Error
-Error: pandoc version 1.12.3 or higher is required
-Solution: Install/update RStudio or install Pandoc separately (see Prerequisites)
-2. API Connection Issues
-Error: Failed to fetch data: 401 - Unauthorized
-Solution: Check DHIS2 credentials in config.yml
-3. Missing Metadata
-Warning: Metadata file not found
-Solution: Ensure Excel metadata file exists at specified path
-4. Memory Issues with Large Datasets
-Solution: Enable caching and use data filtering:
-r# Filter data by date range
-register <- register %>% filter(year >= 2023)
-Getting Help
 
-Check the logs - functions use structured logging
-Verify configuration settings
-Test API connection separately
-Check data quality warnings in reports
-
-Development
-Adding New Features
-
-Add functions to appropriate R files in R/ directory
-Update configuration in config.yml if needed
-Add tests in tests/ directory
-Update documentation
-
-Testing
-r# Run basic tests
-source("R/data_loader.R")
-cfg <- config::get()
-raw_data <- load_dhis2_data(force_refresh = FALSE)
-summary(raw_data)
-License
-[Add your license information here]
-Contributing
-[Add contribution guidelines here]
 Contact
-[Add contact information here]
+[Jennifer Majer: jlmajer@internationalmedicalcorps.org]
