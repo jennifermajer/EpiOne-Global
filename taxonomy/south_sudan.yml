@@ -1,0 +1,146 @@
+# South Sudan-specific disease taxonomy and synonyms
+# Maps Excel column names to canonical disease names from base.yaml
+
+synonyms:
+  # Excel column disease names to canonical mappings (aligned to taxonomy/base.yaml)
+  "Malaria": "Malaria (Confirmed)"
+  "Diarrhea": "Diarrhoea (Other)"
+  "Pneumonia": "Pneumonia"
+  "Measles": "Measles"
+  "HepE": "Hepatitis E"
+  "Meningitis": "Meningitis (Suspected)"
+  "Kalaazar": "Leishmaniasis (Visceral)"
+  "ARI": "Acute Upper Respiratory Infection"
+  "Abortion/ PV bleeding": "Obstetric Complication"
+  "Acute Ear Infection": "Acute Otitis Media"
+  "Acute flaccid paralysis (sus polio)": "Acute Flaccid Paralysis"
+  "Acute jaundice syndrome (sus Hep)": "Viral Hepatitis (Other)"
+  "Acute watery diarhoea (AWD) with moderate dehydration": "Acute Watery Diarrhoea (Suspected Cholera)"
+  "Amoebiasis (Intestinal Worm)": "Amoebiasis"
+  "Arithritis": "Arthritis"
+  "AWD with Severe dehydration": "Acute Watery Diarrhoea (Suspected Cholera)"
+  "Bronchitis with bacterial Infection": "Acute Bronchitis/Bronchiolitis"
+  "Chronic disease": "General/Unspecified"
+  "Congestive heart failure/ Angina": "Heart Failure"
+  "Constipation": "Gastrointestinal Disorder (Other)"
+  "Dental conditions": "ENT Disorder (Other)"
+  "Diabetes": "Diabetes Mellitus"
+  "Eclampsia": "Preeclampsia"
+  "Enteric fever/ typhoid Fever": "Typhoid Fever"
+  "Epistaxis": "ENT Disorder (Other)"
+  "Extra pyramidal side effects": "Adverse Drug Effect"
+  "Eye disease/Conjuctivitis / Allergic": "Conjunctivitis"
+  "Fever of unknown origin (FUO)": "Fever of Unknown Origin"
+  "Genital ulcer": "Genital Disorder (Other)"
+  "Genital Wart (STI)": "Anogenital Warts (HPV)"
+  "Giardiasis (Intestinal Worm)": "Giardiasis"
+  "Guinea-worm disease (sus)": "Helminthiasis (Unspecified)"
+  "Hemorroid": "Gastrointestinal Disorder (Other)"
+  "Hepatitis": "Viral Hepatitis (Other)"
+  "Herpes Zoster ( Shengles) Skin disease": "Herpes Zoster (Shingles)"
+  "Hyperemesis gravidarum": "Obstetric Complication"
+  "Inguinal Swelling ( Bubo) (STI)": "Genital Disorder (Other)"
+  "Injuries Burns": "Burn"
+  "Injuries Gun shot": "Gunshot Wound"
+  "Injuries Wounds": "Superficial Injury"
+  "kala Azar ( leshmaniasis)": "Leishmaniasis (Visceral)"
+  "Malaria severe (PF confirmed)": "Malaria (Confirmed)"
+  "Malaria uncomplicated  (PF confirmed)": "Malaria (Confirmed)"
+  "Malaria uncomplicated (non-confirmed)": "Malaria (Suspected)"
+  "Measles (sus)": "Measles"
+  "Meningitis (sus)": "Meningitis (Suspected)"
+  "Moderate Pneumonia": "Pneumonia"
+  "Neonatal Sepsis": "Neonatal Complication"
+  "Neralgic pain": "Neurological Disorder (Other)"
+  "Nerve compression": "Neurological Disorder (Other)"
+
+  # Alternative spellings and local terms -> base canonicals
+  "Diarrhoea": "Diarrhoea (Other)"
+  "Watery_diarrhea": "Acute Watery Diarrhoea (Suspected Cholera)"
+  "Acute_diarrhea": "Diarrhoea (Other)"
+  "Respiratory_infection": "Acute Upper Respiratory Infection"
+  "Upper_respiratory": "Acute Upper Respiratory Infection"
+  "Lung_infection": "Pneumonia"
+  "Hepatitis_E": "Hepatitis E"
+  "Viral_hepatitis": "Viral Hepatitis (Other)"
+  "Kala_azar": "Leishmaniasis (Visceral)"
+  "Visceral_leishmaniasis": "Leishmaniasis (Visceral)"
+  "Bacterial_meningitis": "Meningitis (Suspected)"
+
+  # Local language terms (Arabic/English mix common in South Sudan) -> base canonicals
+  "Ishal": "Acute Watery Diarrhoea (Suspected Cholera)"
+  "Suma": "Influenza-Like Illness"
+  "Hasba": "Measles"
+
+# South Sudan-specific disease priorities (humanitarian context)
+priority_diseases:
+- "Malaria (Confirmed)"
+- "Acute Watery Diarrhoea (Suspected Cholera)"
+- "Pneumonia"
+- "Measles"
+- "Hepatitis E"
+- "Meningitis (Suspected)"
+- "Leishmaniasis (Visceral)"
+
+# Context-specific notes for South Sudan
+context:
+  humanitarian_setting: true
+  displacement_context: true
+  refugee_populations: true
+  outbreak_prone_diseases:
+  - "Hepatitis E"
+  - "Measles"
+  - "Meningitis"
+  endemic_diseases:
+  - "Malaria"
+  - "Leishmaniasis"
+  - "Acute watery diarrhea"
+  nutrition_related:
+  - "Pneumonia" # Higher risk with malnutrition
+  - "Measles" # More severe with malnutrition
+  population_movement_diseases:
+  - "Hepatitis E"
+  - "Measles"
+  - "Meningitis"
+
+# Exclusion rules for non-morbidity data elements
+exclusions:
+  # Specific non-morbidity items to exclude from disease surveillance
+  non_morbidities:
+  # Add specific data element names that are not diseases/morbidities
+  - "Total Consultations"
+  - "Revisit"
+
+  # Pattern-based exclusions by category
+  categories:
+    vaccines:
+      # Vaccination-related data elements
+      # - ".*[Vv]accin.*"
+      # - ".*[Ii]mmuniz.*"
+      # - ".*[Dd]oses.*"
+      # - ".*Coverage.*"
+    services:
+      # Non-medical services and social programs
+      # - "GBV.*"
+      # - ".*[Cc]ounseling.*"
+      # - ".*[Ss]creening.*"
+      # - ".*[Ee]ducation.*"
+      # - ".*[Oo]utreach.*"
+      # - ".*[Pp]lanning.*"
+    supplies:
+      # Supply distribution/logistics
+      # - ".*[Ss]upplies.*"
+      # - ".*[Dd]istribution.*"
+      # - ".*[Ss]tock.*"
+      # - ".*[Kk]it.*"
+    administrative:
+      # Administrative/reporting metrics
+      # - ".*[Rr]eport.*"
+      # - ".*[Mm]eeting.*"
+      # - ".*[Tt]raining.*"
+      # - ".*[Mm]onitoring.*"
+    demographic:
+      # Population/demographic data not related to morbidity
+      # - ".*[Pp]opulation.*"
+      # - ".*[Cc]ensus.*"
+      # - ".*[Rr]egistration.*"

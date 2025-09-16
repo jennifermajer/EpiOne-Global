@@ -1,0 +1,400 @@
+# ============================================================================
+# AI Customization Configuration for Epidemiological Surveillance
+# ============================================================================
+# This file allows non-technical users to customize AI behavior for their
+# specific deployment context without modifying code.
+# 
+# INTEGRATION: The AI system will:
+# - Extract disease patterns, date ranges, and geographic coverage from your data
+# - Adapt endemic disease lists to diseases actually present in your dataset
+# - Adjust alert thresholds based on actual consultation volumes
+# - Focus AI analysis on patterns present in your specific data
+# ============================================================================
+
+meta:
+  version: "1.0"
+  deployment_date: "2025-01-24"
+  customized_by: "Program Team"
+  description: "Syria humanitarian health surveillance AI customization"
+
+# ============================================================================
+# CONTEXT DEFINITION (High Priority)
+# Define your operational setting and population characteristics
+# ============================================================================
+context:
+  context_name: "syria_humanitarian"
+  setting_description: "Humanitarian health surveillance in Syria"
+  population_description: "Internally displaced persons, returnees, host communities, conflict-affected populations"
+  
+  operational_constraints:
+    - "Limited healthcare access"
+    - "Security challenges" 
+    - "Resource constraints"
+    - "Intermittent supply chains"
+    - "Staff turnover"
+  
+  surveillance_priorities:
+    - "Outbreak detection"
+    - "Vulnerable population health"
+    - "Cost-effective interventions"
+    - "Preventable disease burden"
+    - "Emergency preparedness"
+
+# ============================================================================
+# DISEASE CATEGORIES (High Priority)
+# Update disease lists to match your local epidemiology
+# ============================================================================
+diseases:
+  # Common diseases in your operational area (updated for Syria context)
+  endemic_diseases:
+    - "Acute watery diarrhea"
+    - "Upper respiratory tract infections"
+    - "Lower respiratory tract infections" 
+    - "Skin diseases"
+    - "Scabies"
+    - "Urinary tract infections"
+    - "Eye infections"
+    - "Gastroenteritis"
+    - "Hypertension"
+    - "Diabetes"
+    
+  # Diseases requiring immediate epidemic response
+  epidemic_diseases:
+    - "Cholera"
+    - "Suspected Cholera"
+    - "Acute watery diarrhea"
+    - "Measles"
+    - "Suspected Measles"
+    - "Acute Flaccid Paralysis"
+    - "Meningitis"
+    - "Bacterial Meningitis"
+    - "Yellow fever"
+    - "Hepatitis A"
+    - "Hepatitis E"
+    
+  # Respiratory disease surveillance focus
+  respiratory_conditions:
+    - "Pneumonia"
+    - "Tuberculosis"
+    - "Suspected Tuberculosis"
+    - "Upper respiratory tract infections"
+    - "Lower respiratory tract infections"
+    - "Asthma"
+    - "Influenza-like illness"
+    
+  # Diarrheal disease surveillance focus  
+  diarrheal_conditions:
+    - "Acute watery diarrhea"
+    - "Bloody diarrhea"
+    - "Suspected Cholera"
+    - "Dysentery"
+    - "Gastroenteritis"
+    
+  # Vector-borne diseases relevant to your area
+  vector_borne_diseases:
+    - "Malaria"
+    - "Suspected Malaria"
+    - "Leishmaniasis"
+    - "Dengue"
+    
+  # Malnutrition conditions for screening
+  nutrition_related:
+    - "Severe Malnutrition"
+    - "Moderate acute Malnutrition"
+    - "Complicated severe acute Malnutrition"
+    - "Uncomplicated severe acute Malnutrition"
+    - "Underweight"
+    
+  # Trauma and injury conditions
+  trauma_conditions:
+    - "Trauma"
+    - "Burns"
+    - "Fractures"
+    - "Wounds"
+    - "Foreign body"
+
+# ============================================================================
+# PRIORITY POPULATIONS (High Priority)
+# Define health priorities for different population groups
+# ============================================================================
+populations:
+  # High-priority population groups
+  high_priority:
+    - "children under 5"
+    - "pregnant women"
+    - "lactating women"
+    - "elderly (65+)"
+    - "malnourished individuals"
+    - "chronically ill patients"
+    
+  # Specific health priorities for children under 5
+  children_under_5_focus:
+    - "Malnutrition screening"
+    - "Vaccination status"
+    - "Diarrheal diseases"
+    - "Respiratory infections"
+    - "Growth monitoring"
+    
+  # Specific health priorities for pregnant/lactating women
+  pregnant_women_focus:
+    - "Antenatal care"
+    - "Malnutrition screening"
+    - "Anemia detection"
+    - "Safe delivery planning"
+    - "Postpartum care"
+    
+  # Specific health priorities for elderly
+  elderly_focus:
+    - "Chronic disease management"
+    - "Medication adherence"
+    - "Mobility assessment"
+    - "Social support needs"
+
+# ============================================================================
+# ALERT THRESHOLDS (High Priority)
+# Configure when the system should generate outbreak alerts
+# ============================================================================
+thresholds:
+  # How many times baseline to trigger alerts
+  # 1.5 = Very sensitive (more alerts)
+  # 2.0 = Balanced (recommended)
+  # 3.0 = Conservative (fewer alerts)
+  outbreak_multiplier: 2.0
+  
+  # Minimum case count to be considered high burden
+  # Adjust based on your population size:
+  # Small clinics: 20-50 cases
+  # Large facilities: 100-200 cases
+  high_burden_threshold: 50
+  
+  # Number of geographic areas for spread concern
+  geographic_spread_threshold: 2
+  
+  # Minimum cases needed before generating any alert
+  minimum_cases_for_alert: 5
+  
+  # Cases per week that indicate potential outbreak
+  weekly_outbreak_threshold: 10
+
+# ============================================================================
+# TIME PERIODS (Medium Priority)
+# Configure surveillance timing based on your reporting cycle
+# ============================================================================
+temporal:
+  # How often you analyze data
+  # Options: "daily", "weekly", "monthly"
+  surveillance_cycle: "weekly"
+  
+  # How much historical data to use for baseline
+  # 4 weeks = Responsive to recent changes
+  # 8 weeks = Balanced (recommended)  
+  # 12 weeks = Very stable baseline
+  baseline_period_weeks: 8
+  
+  # Period for "recent" trend analysis
+  recent_period_days: 30
+  
+  # Alert decay period (how long alerts remain active)
+  alert_decay_days: 14
+
+# ============================================================================
+# AI PARAMETERS (Medium Priority)
+# Control AI behavior and response characteristics
+# ============================================================================
+ai_params:
+  # AI creativity level (0.0 = deterministic, 1.0 = very creative)
+  temperature: 0.1
+  
+  # Maximum response length
+  max_tokens: 1000
+  
+  # Response style preferences
+  response_style: "professional"
+  include_recommendations: true
+  include_confidence_levels: true
+  
+  # Analysis depth
+  analysis_depth: "comprehensive"  # Options: "brief", "standard", "comprehensive"
+  
+  # Language preferences
+  language: "en"
+  medical_terminology_level: "technical"  # Options: "simple", "technical", "expert"
+
+# ============================================================================
+# QUALITY SETTINGS (Medium Priority)
+# Control quality assurance and expert review processes
+# ============================================================================
+quality:
+  # Minimum quality score for AI outputs (0-100)
+  minimum_score: 60
+  
+  # Threshold for expert review requirement (0-100)
+  expert_review_threshold: 70
+  
+  # Quality control settings
+  require_medical_validation: true
+  flag_unusual_patterns: true
+  cross_reference_historical_data: true
+  
+  # Confidence thresholds
+  high_confidence_threshold: 80
+  low_confidence_threshold: 40
+
+# ============================================================================
+# SECURITY SETTINGS (High Priority)
+# Data protection and system security configurations
+# ============================================================================
+security:
+  # Maximum length for user queries
+  max_query_length: 500
+  
+  # Data protection settings
+  anonymize_data: true
+  audit_all_interactions: true
+  log_retention_days: 90
+  
+  # Content filtering
+  filter_sensitive_content: true
+  allowed_query_types:
+    - "disease_analysis"
+    - "trend_analysis" 
+    - "geographic_analysis"
+    - "demographic_analysis"
+    - "alert_queries"
+  
+  # Rate limiting
+  max_queries_per_hour: 100
+  max_queries_per_user: 20
+
+# ============================================================================
+# OUTPUT FORMATTING (Low Priority)
+# Customize how AI presents information
+# ============================================================================
+formatting:
+  # Word limits for different analysis types
+  max_summary_words: 200
+  max_recommendation_words: 150
+  max_explanation_words: 300
+  
+  # Formatting preferences
+  include_bullet_points: true
+  include_section_headers: true
+  include_statistics: true
+  include_trend_indicators: true
+  
+  # Visual indicators
+  use_emoji_indicators: true
+  confidence_indicators: true
+  priority_color_coding: true
+  
+  # Report sections to include
+  include_executive_summary: true
+  include_detailed_analysis: true
+  include_recommendations: true
+  include_data_quality_notes: true
+
+# ============================================================================
+# DEPLOYMENT-SPECIFIC CONFIGURATIONS
+# Predefined configurations for common deployment types
+# ============================================================================
+deployment_presets:
+  refugee_camp:
+    outbreak_multiplier: 1.8
+    high_burden_threshold: 25
+    geographic_spread_threshold: 1
+    surveillance_cycle: "daily"
+    priority_diseases: ["Acute watery diarrhea", "Respiratory infections", "Malnutrition", "Measles"]
+    
+  urban_clinic:
+    outbreak_multiplier: 2.0
+    high_burden_threshold: 100
+    geographic_spread_threshold: 3
+    surveillance_cycle: "weekly"
+    priority_diseases: ["Respiratory infections", "Diarrheal diseases", "NCDs", "Injuries"]
+    
+  rural_health:
+    outbreak_multiplier: 2.5
+    high_burden_threshold: 15
+    geographic_spread_threshold: 1
+    surveillance_cycle: "weekly"
+    priority_diseases: ["Basic infectious diseases", "Maternal health", "Malnutrition"]
+    
+  emergency_response:
+    outbreak_multiplier: 1.5
+    high_burden_threshold: 10
+    geographic_spread_threshold: 1
+    surveillance_cycle: "daily"
+    priority_diseases: ["Outbreak-prone diseases", "Trauma", "Malnutrition"]
+
+# ============================================================================
+# CUSTOM PROMPT TEMPLATES
+# Customize AI prompts for different analysis types
+# ============================================================================
+prompts:
+  executive_summary:
+    template: "Generate a concise executive summary of epidemiological patterns for {setting_description}. Focus on {surveillance_priorities}. Consider constraints: {operational_constraints}."
+    max_words: 200
+    
+  disease_analysis:
+    template: "Analyze disease patterns in {context_name} setting. Priority populations: {high_priority}. Endemic diseases: {endemic_diseases}. Identify concerning trends."
+    max_words: 300
+    
+  outbreak_alert:
+    template: "Assess outbreak risk for {epidemic_diseases} in {setting_description}. Alert if patterns exceed {outbreak_multiplier}x baseline. Consider {operational_constraints}."
+    max_words: 150
+    
+  geographic_analysis:
+    template: "Analyze geographic distribution of health conditions in {setting_description}. Focus on spread patterns and accessibility challenges."
+    max_words: 250
+    
+  demographic_analysis:
+    template: "Analyze health patterns across demographic groups, prioritizing {high_priority}. Consider {context_specific_vulnerabilities}."
+    max_words: 250
+
+# ============================================================================
+# VALIDATION RULES
+# Define rules for validating customization parameters
+# ============================================================================
+validation:
+  required_fields:
+    - "context.context_name"
+    - "context.setting_description"
+    - "thresholds.outbreak_multiplier"
+    - "diseases.endemic_diseases"
+    
+  numeric_ranges:
+    outbreak_multiplier:
+      min: 1.0
+      max: 5.0
+    temperature:
+      min: 0.0
+      max: 1.0
+    minimum_score:
+      min: 0
+      max: 100
+      
+  allowed_values:
+    surveillance_cycle: ["daily", "weekly", "monthly"]
+    response_style: ["professional", "casual", "technical"]
+    analysis_depth: ["brief", "standard", "comprehensive"]
+
+# ============================================================================
+# AI API SETTINGS (Optional - uses main config if not specified)
+# Configure the AI service connection parameters
+# ============================================================================
+ai_settings:
+  # API endpoint - will use main config if not specified
+  api_endpoint: "http://localhost:11434/api/generate"
+  
+  # Model to use - will use main config if not specified  
+  model: "llama3.2:3b"
+  
+  # Response parameters
+  max_tokens: 2048
+  temperature: 0.1
+  
+  # Connection settings
+  timeout: 30
+  
+  # Enable fallback to standard methods if AI unavailable
+  enable_fallback: true

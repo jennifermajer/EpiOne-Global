@@ -1,0 +1,60 @@
+# Synthetic country configuration for testing and demo purposes
+country_name: "Synthetic Demo Data"
+country_code: "synthetic"
+
+# Application settings
+app:
+  title: "Epidemiological Dashboard - Synthetic Data Demo"
+  logo_text: "IMC Health Surveillance"
+  data_source: "Synthetic data for demonstration purposes"
+
+# Data settings
+data:
+  default_file: "data/synthetic_data/synthetic_register.csv"
+  required_columns:
+    - morbidity
+    - datevisit
+    - orgunit
+    - age
+    - sex
+
+# Taxonomy settings
+taxonomy:
+  icd11_enabled: "yes"
+  country_file: null  # No country-specific synonyms for synthetic data
+
+# Disease mappings (none needed for synthetic - already clean)
+disease_mappings:
+  excel_names: {}
+
+# Validation rules
+validation:
+  date_range:
+    min_date: "2024-01-01"
+    max_date: "2024-12-31"
+  age_limits:
+    min_age: 0
+    max_age: 120
+
+# Testing configuration
+testing:
+  synthetic:
+    n: 1000
+    months: 12
+    country: "synthetic"
+    facilities: 50
+
+# Chart configurations
+charts:
+  disease_top_n: 15
+  facility_top_n: 10
+  date_format: "%Y-%m"
+
+# Quality thresholds
+quality:
+  min_completeness: 0.80
+  min_mapping_rate: 0.70
+  alert_thresholds:
+    high: 0.90
+    medium: 0.70
+    low: 0.50

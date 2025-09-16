@@ -1,0 +1,1178 @@
+metadata:
+  created: '2025-08-26'
+  system: Fresh ICD-11 Implementation
+  icd11_version: 2023-01
+  total_mappings: 165
+  api_available: yes
+statistics:
+  high_confidence: 129
+  medium_confidence: 20
+  needs_review: 16
+  api_sourced: 165
+  manual_sourced: 0
+mappings:
+  high_confidence:
+    Acne:
+      icd11_code: ED80.Z
+      icd11_title: Acne, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Acute bronchitis:
+      icd11_code: CA42.Z
+      icd11_title: Acute bronchitis, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Acute tonsillitis:
+      icd11_code: CA03.Z
+      icd11_title: Acute tonsillitis, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Acute watery diarrhea:
+      icd11_code: 1A40.Z
+      icd11_title: Infectious gastroenteritis or colitis without specification of
+        infectious agent
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Adrenal insufficiency:
+      icd11_code: 5A74.Z
+      icd11_title: Adrenocortical insufficiency, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Allergic reaction:
+      icd11_code: 4A8Z
+      icd11_title: Allergic or hypersensitivity conditions of unspecified type
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Anaemia:
+      icd11_code: 3A9Z
+      icd11_title: Anaemias or other erythrocyte disorders, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Anemia:
+      icd11_code: 3A9Z
+      icd11_title: Anaemias or other erythrocyte disorders, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Angina:
+      icd11_code: BA40.Z
+      icd11_title: Angina pectoris, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Appendicitis:
+      icd11_code: DB10.Z
+      icd11_title: Appendicitis, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Arrhythmia:
+      icd11_code: BC9Z
+      icd11_title: Cardiac arrhythmia, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Asthma:
+      icd11_code: CA23
+      icd11_title: Asthma
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Back pain:
+      icd11_code: ME84.Z
+      icd11_title: Spinal pain, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Bipolar disorder:
+      icd11_code: 6A60.Z
+      icd11_title: Bipolar type I disorder, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Bronchiolitis:
+      icd11_code: CA41.Z
+      icd11_title: Acute bronchiolitis, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Burn injuries:
+      icd11_code: NE2Z
+      icd11_title: Burns, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    COPD:
+      icd11_code: CA22.Z
+      icd11_title: Chronic obstructive pulmonary disease, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Cancer:
+      icd11_code: 2D4Z
+      icd11_title: Unspecified malignant neoplasms of unspecified sites
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Cataract:
+      icd11_code: 9B10.Z
+      icd11_title: Cataract, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Cellulitis:
+      icd11_code: 1B70.Z
+      icd11_title: Bacterial cellulitis or lymphangitis due to unspecified bacterium
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Chest pain:
+      icd11_code: MD30.Z
+      icd11_title: Chest pain, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Cholera:
+      icd11_code: 1A00
+      icd11_title: Cholera
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Chronic kidney disease:
+      icd11_code: GB61.Z
+      icd11_title: Chronic kidney disease, stage unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Conjunctivitis:
+      icd11_code: 9A60.Z
+      icd11_title: Conjunctivitis, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Convulsion:
+      icd11_code: 8A68.Z
+      icd11_title: Type of seizure, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Cough:
+      icd11_code: MD12
+      icd11_title: Cough
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Deep vein thrombosis:
+      icd11_code: BD71
+      icd11_title: Deep vein thrombosis
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Dehydration:
+      icd11_code: 5C70.0
+      icd11_title: Dehydration
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Dementia:
+      icd11_code: 6D8Z
+      icd11_title: Dementia, unknown or unspecified cause
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Dengue fever:
+      icd11_code: 1D2Z
+      icd11_title: Dengue fever, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Depression:
+      icd11_code: 6A7Z
+      icd11_title: Depressive disorders, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Dermatitis:
+      icd11_code: EA8Z
+      icd11_title: Dermatitis or eczema, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Diabetes:
+      icd11_code: 5A14
+      icd11_title: Diabetes mellitus, type unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Diabetes mellitus:
+      icd11_code: 5A14
+      icd11_title: Diabetes mellitus, type unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Dizziness:
+      icd11_code: MB48.Z
+      icd11_title: Dizziness and giddiness, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Drowning:
+      icd11_code: NF08.1
+      icd11_title: Drowning or nonfatal submersion
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Dysentery:
+      icd11_code: 1A40.Z
+      icd11_title: Infectious gastroenteritis or colitis without specification of
+        infectious agent
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Ear infection:
+      icd11_code: AB0Z
+      icd11_title: Otitis media, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Eczema:
+      icd11_code: EA8Z
+      icd11_title: Dermatitis or eczema, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Edema:
+      icd11_code: MG29.Z
+      icd11_title: Oedema, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Encephalitis:
+      icd11_code: 1D00.Z
+      icd11_title: Infectious encephalitis not elsewhere classified, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Epilepsy:
+      icd11_code: 8A6Z
+      icd11_title: Epilepsy or seizures, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Eye infection:
+      icd11_code: 9C20.2
+      icd11_title: Purulent endophthalmitis
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Failure to thrive:
+      icd11_code: MG44.11
+      icd11_title: Failure to thrive in infant or child
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Fall:
+      icd11_code: MB47.C
+      icd11_title: Tendency to fall
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Fatigue:
+      icd11_code: MG22
+      icd11_title: Fatigue
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Fever:
+      icd11_code: MG26
+      icd11_title: Fever of other or unknown origin
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Fracture:
+      icd11_code: ND56.2
+      icd11_title: Fracture of unspecified body region
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Fractures and trauma:
+      icd11_code: ND56.2
+      icd11_title: Fracture of unspecified body region
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Gastritis:
+      icd11_code: DA42.Z
+      icd11_title: Gastritis, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Gastroenteritis:
+      icd11_code: 1A40.0
+      icd11_title: Gastroenteritis or colitis without specification of origin
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Gastrointestinal infection:
+      icd11_code: 1A40.Z
+      icd11_title: Infectious gastroenteritis or colitis without specification of
+        infectious agent
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Glaucoma:
+      icd11_code: 9C61.Z
+      icd11_title: Glaucoma, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Goiter:
+      icd11_code: 5A01.Z
+      icd11_title: Nontoxic goitre, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Guillain-Barre syndrome:
+      icd11_code: 8C01.0
+      icd11_title: Acute inflammatory demyelinating polyneuropathy
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    HIV/AIDS:
+      icd11_code: 1C62.3
+      icd11_title: HIV disease clinical stage 4 without mention of tuberculosis or
+        malaria
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Head injury:
+      icd11_code: NA0Z
+      icd11_title: Injuries to the head, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Headache:
+      icd11_code: MB4D
+      icd11_title: Headache, not elsewhere classified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Hearing loss:
+      icd11_code: AB52
+      icd11_title: Deafness not otherwise specified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Heart disease:
+      icd11_code: BC4Z
+      icd11_title: Diseases of the myocardium or cardiac chambers, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Heart failure:
+      icd11_code: BD1Z
+      icd11_title: Heart failure, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Hemophilia:
+      icd11_code: 3B10.0
+      icd11_title: Haemophilia A
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Hepatitis:
+      icd11_code: DB97.Z
+      icd11_title: Inflammatory liver disease, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Hepatitis C:
+      icd11_code: 1E51.1
+      icd11_title: Chronic hepatitis C
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Hepatitis E:
+      icd11_code: 1E51.3
+      icd11_title: Chronic hepatitis E
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Hernia:
+      icd11_code: DD5Z
+      icd11_title: Hernias, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Hypertension:
+      icd11_code: BA00.Z
+      icd11_title: Essential hypertension, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Hyperthyroidism:
+      icd11_code: 5A02.Z
+      icd11_title: Thyrotoxicosis, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Hypothyroidism:
+      icd11_code: 5A00.Z
+      icd11_title: Hypothyroidism, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Influenza Like Illness:
+      icd11_code: 1E32
+      icd11_title: Influenza, virus not identified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Influenza-like illness:
+      icd11_code: 1E32
+      icd11_title: Influenza, virus not identified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Intestinal obstruction:
+      icd11_code: DB30.Y
+      icd11_title: Other specified obstruction of large intestine
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Joint pain:
+      icd11_code: ME82
+      icd11_title: Pain in joint
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Kala-azar:
+      icd11_code: 1F54.0
+      icd11_title: Visceral leishmaniasis
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Kidney stone:
+      icd11_code: GB70.0Z
+      icd11_title: Calculus of kidney, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Leishmaniasis:
+      icd11_code: 1F54.Z
+      icd11_title: Leishmaniasis, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Leukemia:
+      icd11_code: 2B33.4
+      icd11_title: Leukaemia, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Liver disease:
+      icd11_code: DB9Z
+      icd11_title: Diseases of liver, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Lymphoma:
+      icd11_code: 2B33.5
+      icd11_title: Malignant lymphoma, not elsewhere classified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Malaria:
+      icd11_code: 1F42.Z
+      icd11_title: Plasmodium malariae malaria without complication
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Malnutrition:
+      icd11_code: 5B7Z
+      icd11_title: Unspecified undernutrition
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Measles:
+      icd11_code: 1F03
+      icd11_title: Measles
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Meningitis:
+      icd11_code: 1D01.Z
+      icd11_title: Infectious meningitis not elsewhere classified, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Menstrual disorder:
+      icd11_code: GA20.Z
+      icd11_title: Menstrual cycle bleeding disorders, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Migraine:
+      icd11_code: 8A80.Z
+      icd11_title: Migraine, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Multiple sclerosis:
+      icd11_code: 8A40.Z
+      icd11_title: Multiple sclerosis, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Mumps:
+      icd11_code: 1D80
+      icd11_title: Mumps
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Muscle pain:
+      icd11_code: FB56.2
+      icd11_title: Myalgia
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Myocardial infarction:
+      icd11_code: BA41.Z
+      icd11_title: Acute myocardial infarction, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Obesity:
+      icd11_code: 5B81.Z
+      icd11_title: Obesity, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Otitis media:
+      icd11_code: AB0Z
+      icd11_title: Otitis media, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Pancreatitis:
+      icd11_code: DC31.Z
+      icd11_title: Acute pancreatitis, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Parkinson disease:
+      icd11_code: 8A00.0Z
+      icd11_title: Parkinson disease, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Pelvic inflammatory disease:
+      icd11_code: GA05.Z
+      icd11_title: Female pelvic inflammatory diseases, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Peptic ulcer:
+      icd11_code: DA61
+      icd11_title: Peptic ulcer, site unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Pertussis:
+      icd11_code: 1C12.Z
+      icd11_title: Whooping cough, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Pharyngitis:
+      icd11_code: CA02.Z
+      icd11_title: Acute pharyngitis, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Pneumonia:
+      icd11_code: CA40.Z
+      icd11_title: Pneumonia, organism unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Poisoning:
+      icd11_code: NE6Z
+      icd11_title: Harmful effects of unspecified substance
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Poliomyelitis:
+      icd11_code: 1C81
+      icd11_title: Congenital poliomyelitis
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Post-traumatic stress disorder:
+      icd11_code: 6B40
+      icd11_title: Post traumatic stress disorder
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Psoriasis:
+      icd11_code: EA90.Z
+      icd11_title: Psoriasis of unspecified type
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Psychosis:
+      icd11_code: 6A2Z
+      icd11_title: Schizophrenia or other primary psychotic disorders, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Pulmonary embolism:
+      icd11_code: BB00.Z
+      icd11_title: Pulmonary thromboembolism, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Rash:
+      icd11_code: ME66.6Z
+      icd11_title: Rash, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Refractive error:
+      icd11_code: 9D00.Z
+      icd11_title: Disorders of refraction, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Rift Valley fever:
+      icd11_code: 1D44
+      icd11_title: Rift Valley fever
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Road traffic accidents:
+      icd11_code: PA0Z
+      icd11_title: Unintentional land transport traffic event injuring a user of unspecified
+        land transport
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Rubella:
+      icd11_code: 1F02
+      icd11_title: Rubella
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Scabies:
+      icd11_code: 1G04
+      icd11_title: Scabies
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Seizure:
+      icd11_code: 8A68.Z
+      icd11_title: Type of seizure, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Sepsis:
+      icd11_code: 1G40
+      icd11_title: Sepsis without septic shock
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Sickle cell disease:
+      icd11_code: 3A51.1
+      icd11_title: Sickle cell disease without crisis
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Sinusitis:
+      icd11_code: CA0A.Z
+      icd11_title: Chronic rhinosinusitis, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Sore throat:
+      icd11_code: MD36.0
+      icd11_title: Pain in throat
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Stroke:
+      icd11_code: 8B20
+      icd11_title: Stroke not known if ischaemic or haemorrhagic
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Syncope:
+      icd11_code: MG45.Z
+      icd11_title: Syncope and collapse, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Tetanus:
+      icd11_code: 1C13
+      icd11_title: Tetanus
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Thalassemia:
+      icd11_code: 3A50.Z
+      icd11_title: Thalassaemias, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Thyroid disorder:
+      icd11_code: 5A0Z
+      icd11_title: Disorders of the thyroid gland or thyroid hormones system, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Tinnitus:
+      icd11_code: MC41
+      icd11_title: Tinnitus
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Tuberculosis:
+      icd11_code: 1B1Z
+      icd11_title: Tuberculosis, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Typhoid fever:
+      icd11_code: 1A07.Z
+      icd11_title: Typhoid fever, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Urinary tract infection:
+      icd11_code: GC08.Z
+      icd11_title: Urinary tract infection, site and agent not specified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Urticaria:
+      icd11_code: EB05
+      icd11_title: Urticaria of unspecified type
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    West Nile fever:
+      icd11_code: 1D46
+      icd11_title: West Nile virus infection
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Whooping cough:
+      icd11_code: 1C12.Z
+      icd11_title: Whooping cough, unspecified
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Wound:
+      icd11_code: MD11.5
+      icd11_title: Dyspnoea
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Yellow fever:
+      icd11_code: 1D47
+      icd11_title: Yellow fever
+      icd11_category: ~
+      confidence: high
+      source: icd11_api
+      mapped_date: '2025-08-26'
+  medium_confidence:
+    Abdominal pain:
+      icd11_code: MD81
+      icd11_title: Abdominal or pelvic pain
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Anxiety disorders:
+      icd11_code: MB24.3
+      icd11_title: Anxiety
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Bloody diarrhea:
+      icd11_code: 1A40.Z
+      icd11_title: Infectious gastroenteritis or colitis without specification of
+        infectious agent
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Diphtheria:
+      icd11_code: 1C17.Y
+      icd11_title: Other specified diphtheria
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Fungal infection:
+      icd11_code: FA10.2
+      icd11_title: Fungal infection of joint
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Hepatitis A:
+      icd11_code: DB97.Z
+      icd11_title: Inflammatory liver disease, unspecified
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Hepatitis B:
+      icd11_code: 1E50.1
+      icd11_title: Acute hepatitis B
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Lower respiratory tract infections:
+      icd11_code: CA4Z
+      icd11_title: Lung infections, unspecified
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Meningitis suspected:
+      icd11_code: 1D01.Z
+      icd11_title: Infectious meningitis not elsewhere classified, unspecified
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Other injuries:
+      icd11_code: ND56.Z
+      icd11_title: Unspecified injury to unspecified part of trunk, limb or body region
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Pneumonia suspected:
+      icd11_code: CA40.Z
+      icd11_title: Pneumonia, organism unspecified
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Prostate disease:
+      icd11_code: GA90
+      icd11_title: Hyperplasia of prostate
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Respiratory tract infection:
+      icd11_code: CA07.0
+      icd11_title: Acute upper respiratory infection, site unspecified
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Rhinitis:
+      icd11_code: CA00
+      icd11_title: Acute nasopharyngitis
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Severe acute malnutrition:
+      icd11_code: 5B7Z
+      icd11_title: Unspecified undernutrition
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Sexually transmitted infection:
+      icd11_code: 1A9Z
+      icd11_title: Predominantly sexually transmitted infections, unspecified
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Spinal injury:
+      icd11_code: ND51.1
+      icd11_title: Injury of unspecified nerve, spinal nerve root or plexus of trunk
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Vomiting:
+      icd11_code: DD90.4
+      icd11_title: Functional nausea or vomiting
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Wound infection:
+      icd11_code: NE81.2Z
+      icd11_title: Surgical site infection, unspecified
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Zika virus:
+      icd11_code: 1D48
+      icd11_title: Zika virus disease
+      icd11_category: ~
+      confidence: medium
+      source: icd11_api
+      mapped_date: '2025-08-26'
+  needs_review:
+    Acute Upper respiratory infection:
+      icd11_code: CA07
+      icd11_title: Acute upper respiratory infections of multiple and unspecified
+        sites
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Acute bronchitis bronchiolitis:
+      icd11_code: CA41.Z
+      icd11_title: Acute bronchiolitis, unspecified
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Acute respiratory infection:
+      icd11_code: CA4Z
+      icd11_title: Lung infections, unspecified
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Birth complication:
+      icd11_code: QA46.Z
+      icd11_title: Outcome of delivery, unspecified
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Chikungunya:
+      icd11_code: 1D40
+      icd11_title: Chikungunya virus disease
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Infertility:
+      icd11_code: GA31.Z
+      icd11_title: Female infertility without specification whether primary or secondary
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Laceration:
+      icd11_code: ND31
+      icd11_title: Open wounds involving multiple body regions
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Mental health disorder:
+      icd11_code: 6E8Z
+      icd11_title: Mental, behavioural or neurodevelopmental disorders, unspecified
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Nausea:
+      icd11_code: 1A23
+      icd11_title: Enteritis due to Norovirus
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Neonatal condition:
+      icd11_code: KD5Z
+      icd11_title: Conditions originating in the perinatal or neonatal period, unspecified
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Pregnancy complication:
+      icd11_code: JA61.Z
+      icd11_title: Venous complications in pregnancy, unspecified
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Skin and soft tissue infection:
+      icd11_code: 1H0Z
+      icd11_title: Infection, unspecified
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Skin infections:
+      icd11_code: 1H0Z
+      icd11_title: Infection, unspecified
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Suspected Diphtheria:
+      icd11_code: 1C17.Y
+      icd11_title: Other specified diphtheria
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Upper respiratory tract infections:
+      icd11_code: CA0Z
+      icd11_title: Upper respiratory tract disorders, unspecified
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'
+    Violence-related injuries:
+      icd11_code: 6B40
+      icd11_title: Post traumatic stress disorder
+      icd11_category: ~
+      confidence: low
+      source: icd11_api
+      mapped_date: '2025-08-26'

@@ -1,0 +1,230 @@
+country:
+  name: South Sudan
+  code: south_sudan
+  context: humanitarian
+  organization: IMC South Sudan
+data_source:
+  type: excel
+  excel:
+    file_path: data/country_excel_databases/south_sudan/IMC_South_Sudan_Database_2020.xlsx
+    sheet_name: Monthly_Aggregates
+    header_row: 2
+    date_format: '%B %Y'
+    skip_rows: 1
+    date_column_type: text
+    missing_values:
+    - ''
+    - NA
+    - N/A
+    - '-'
+    - '0'
+
+# Multi-sheet Excel processing configuration
+excel_processing:
+  # Sheet selection strategy
+  sheet_selection:
+    mode: "auto_multiple"  # Options: "auto_multiple", "specific_sheets", "primary_only"
+    
+    # Patterns to EXCLUDE from processing (applied first)
+    exclude_patterns:
+      - ".*Summary.*"           # Skip all summary sheets
+      - ".*Database.*"          # Skip metadata sheets like "EPI Database_*"
+      - "Analysis"              # Skip analysis sheets  
+      - "Top Morbidity.*"       # Skip summary tables
+      - ".*and.*Year.*"         # Skip age group summaries like "<5 and>5 Year Summary"
+      - "Morbidity summary"     # Skip general summaries
+    
+    # Patterns to INCLUDE (applied after exclusions)
+    include_patterns:
+      - ".*POC.*"               # Include POC (Point of Care) sheets
+      - ".*County.*"            # Include county-level sheets
+      - ".*Teaching Hosp.*"     # Include teaching hospital sheets
+      - "^(Malakal|Wau|Juba|Akoka|Balliet|Pigi|Panyikang|Aburoc|Maban|Assosa|Bam)$"  # Specific locations
+    
+    # Minimum score threshold for auto-selection
+    min_score_threshold: 50
+    
+    # Optional: Specific sheets to process (overrides auto mode when uncommented)
+    # specific_sheets:
+    #   - "Malakal POC"
+    #   - "Wau"
+    #   - "JUba PoC"
+    #   - "Akoka County"
+    #   - "Balliet County"
+    #   - "Pigi County"
+    #   - "Panyikang County"
+  
+  # Extract admin variables from location (sheet names)
+  extract_admin_from_location: true
+  
+  # Location mapping from sheet names to administrative levels
+  location_mapping:
+    # Upper Nile State locations
+    malakal:
+      admin1: "Upper Nile"
+      admin2: "Malakal"
+      admin3: "Malakal Town"
+    panyikang:
+      admin1: "Upper Nile"
+      admin2: "Panyikang"
+      admin3: "Panyikang Town"
+    balliet:
+      admin1: "Upper Nile"
+      admin2: "Balliet"
+      admin3: "Balliet Town"
+    akoka:
+      admin1: "Upper Nile"
+      admin2: "Akoka"
+      admin3: "Akoka Town"
+    pigi:
+      admin1: "Upper Nile"
+      admin2: "Pigi"
+      admin3: "Pigi Town"
+    maban:
+      admin1: "Upper Nile"
+      admin2: "Maban"
+      admin3: "Maban Town"
+    aburoc:
+      admin1: "Upper Nile"
+      admin2: "Maban"
+      admin3: "Aburoc Camp"
+    assosa:
+      admin1: "Upper Nile"
+      admin2: "Maban"
+      admin3: "Assosa Camp"
+    bam:
+      admin1: "Upper Nile"
+      admin2: "Maban"
+      admin3: "Bam Camp"
+    
+    # Unity State locations
+    bentiu:
+      admin1: "Unity"
+      admin2: "Rubkona"
+      admin3: "Bentiu Town"
+    rubkona:
+      admin1: "Unity"
+      admin2: "Rubkona"
+      admin3: "Rubkona Town"
+    mayom:
+      admin1: "Unity"
+      admin2: "Mayom"
+      admin3: "Mayom Town"
+    
+    # Central Equatoria State locations
+    juba:
+      admin1: "Central Equatoria"
+      admin2: "Juba"
+      admin3: "Juba Town"
+    "juba poc":
+      admin1: "Central Equatoria"
+      admin2: "Juba"
+      admin3: "Juba POC"
+    jubapoc:
+      admin1: "Central Equatoria"
+      admin2: "Juba"
+      admin3: "Juba POC"
+    
+    # Western Bahr el Ghazal locations
+    wau:
+      admin1: "Western Bahr el Ghazal"
+      admin2: "Wau"
+      admin3: "Wau Town"
+    "wau shuluk":
+      admin1: "Western Bahr el Ghazal"
+      admin2: "Wau"
+      admin3: "Wau Shuluk"
+
+# Data quality settings
+quality_control:
+  # Remove records with cases below this threshold
+  min_cases_threshold: 0
+  
+  # Flag locations that seem to have data quality issues
+  quality_flags:
+    low_data_warning: 10  # Warn if location has < 10 total records
+data_mapping:
+  date_column: Reporting_Month
+  disease_column: Disease_Category
+  facility_column: ~
+  geographic:
+    admin0: Country
+    admin1: State
+    admin2: County
+    admin3: Payam
+  demographics:
+    age_column: ~
+    age_group_column: AgeGroup
+    sex_column: Sex
+  stratification:
+    resident_status: Population_Type
+    disability: ~
+    nutrition_status: Malnutrition_Status
+    socioeconomic: ~
+excel_structure:
+  format: pivot_table  # UPDATED: Real format is pivot table, not wide
+  disease_columns:
+    pattern: ^[A-Z][a-z_]+_(Under1|1to4|5to14|15to49|50plus)_(Male|Female)$
+    examples:
+    - Malaria_Under1_Male
+    - Diarrhea_1to4_Female
+    - Pneumonia_15to49_Male
+  column_parsing:
+    disease_position: 1
+    age_position: 2
+    sex_position: 3
+    separator: _
+age_groups:
+  type: excel_columns
+  excel_mapping:
+    Under1:
+      min_age: 0
+      max_age: 0.99
+    1to4:
+      min_age: 1
+      max_age: 4
+    5to14:
+      min_age: 5
+      max_age: 14
+    15to49:
+      min_age: 15
+      max_age: 49
+    50plus:
+      min_age: 50
+      max_age: 999
+taxonomy:
+  base_system: icd11
+  base_file: icd11/disease_mappings.yml
+  country_file: south_sudan_icd11.yml
+  icd11_enabled: yes
+  priority_diseases:
+  - Malaria
+  - Acute watery diarrhea
+  - Pneumonia
+  - Measles
+  - Hepatitis E
+  - Meningitis
+  - Kala-azar
+  icd11_settings:
+    use_api: yes
+    cache_enabled: yes
+    fallback_to_manual: yes
+    require_confidence: medium
+    flag_unmapped_diseases: yes
+geography:
+  coordinate_system: WGS84
+  shapefile_path: data/shapefiles/south_sudan/
+  admin_levels:
+  - admin0
+  - admin1
+  - admin2
+  - admin3
+reporting:
+  default_period: monthly
+  fiscal_year_start: 1
+  languages: en
+  time_zone: Africa/Juba
+ai_customization:
+  deployment_type: humanitarian
+  population_description: Displaced populations, host communities, returnees
+  context_name: south_sudan_humanitarian

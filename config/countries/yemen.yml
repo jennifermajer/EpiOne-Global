@@ -1,0 +1,258 @@
+country:
+  name: Yemen
+  code: YE
+  context: humanitarian
+  organization: IMC Yemen
+data_source:
+  type: dhis2
+  dhis2:
+    base_url: https://dhis.medmis.org/api/
+    data_type: aggregate
+    dataset_id: morbidity_monthly
+    organisation_unit_level: 3
+    organisation_unit_root: YMvD0wGBgMI # International Medical Corps Yemen
+    timeout: 300
+    endpoints:
+      data_values: dataValueSets.json
+      analytics: analytics.json
+      metadata: metadata.json
+data_mapping:
+  date_column: period
+  disease_column: dataElement
+  facility_column: ~
+  geographic:
+    admin0: country
+    admin1: governorate
+    admin2: district
+    admin3: ~
+  demographics:
+    age_column: ~
+    age_group_column: categoryOption
+    sex_column: categoryOption
+  stratification:
+    resident_status: categoryOption
+    disability: ~
+    nutrition_status: ~
+    socioeconomic: ~
+age_groups:
+  type: dhis2_categories
+  dhis2_mapping:
+    0-11m:
+      min_age: 0
+      max_age: 0.99
+      dhis2_id: cat_under1
+    1-4y:
+      min_age: 1
+      max_age: 4
+      dhis2_id: cat_1to4
+    5-14y:
+      min_age: 5
+      max_age: 14
+      dhis2_id: cat_5to14
+    15-49y:
+      min_age: 15
+      max_age: 49
+      dhis2_id: cat_15to49
+    50+y:
+      min_age: 50
+      max_age: 999
+      dhis2_id: cat_50plus
+taxonomy:
+  base_system: icd11
+  base_file: icd11/disease_mappings.yml
+  country_file: yemen.yml
+  icd11_enabled: yes
+  priority_diseases:
+  - Acute watery diarrhea
+  - Cholera
+  - Dengue fever
+  - Malaria
+  - Diphtheria
+  - Measles
+  - Chikungunya
+  icd11_settings:
+    use_api: yes
+    cache_enabled: yes
+    fallback_to_manual: yes
+    require_confidence: medium
+    flag_unmapped_diseases: yes
+dhis2_mappings:
+  # Category option mappings for age groups and sex
+  category_options:
+    # Age group mappings based on observed DHIS2 IDs
+    pOe9zNS9UD3: "0-11m"
+    LvAdqy4OYtz: "1-4y"
+    n3IOaxBdJ78: "5-14y"
+    JrSyKDu55gk: "15-49y"
+    XpH85SUgBEt: "50+y"
+    vGwCcq2Lgde: "All ages"
+
+    # Sex mappings - expanded with common DHIS2 patterns
+    Male: "Male"
+    Female: "Female"
+    rBvjJYbMCVx: "Male"
+    Mnp3oXrpAbK: "Female"
+
+    # Additional sex pattern mappings for Yemen DHIS2
+    "default": "All sexes"
+    "Default": "All sexes"
+    "DEFAULT": "All sexes"
+    Z9VuiYfDhei: "All sexes" # default
+
+    # Actual Yemen DHIS2 category option IDs discovered from diagnostic output
+    OTCSRVXIF3I: "Female" # Confirmed from diagnostic output
+    uqVDm4qzfoU: "Male" # Confirmed from diagnostic output
+
+    # Composite demographic category options (age + sex)
+    # These preserve the original DHIS2 names so the parsing logic can extract both age and sex
+
+    # 0-11 months with sex
+    fPM36HxOyCO: "0-11 Months, Male" # Preserves both age and sex
+    NIKxS8aEa37: "0-11 Months, Female" # Preserves both age and sex
+    An1LWivTq1g: "0-11 Months, Male" # Preserves both age and sex
+    hhtLC0NHYce: "Under 1 year, Male" # Preserves both age and sex
+    xAETEv7QK4P: "Under 1 year, Female" # Preserves both age and sex
+    LYKXQZfSueY: "Under 1 year, Female" # Preserves both age and sex
+
+    # 1-4 years with sex
+    t0Xw9SF9qPp: "1-4 Years, Male" # Preserves both age and sex
+    ifPHYj4TTtQ: "1-4 Years, Female" # Preserves both age and sex
+    FeZsrrrP5aR: "1-4 Years, Male" # Preserves both age and sex
+    J0jOaU4HtQK: "1-4 Years, Female" # Preserves both age and sex
+    HPPNMKkIeoX: "1-4 Years, Female" # 1 to 4.9 Years, Female
+    bRWw6GzneVS: "1-4 Years, Male" # 1 to 4.9 Years, Male
+
+    # 0-59 months (covers 0-5 years) with sex
+    NaLI0LecQf4: "1-4 Years, Female" # 0-59 Months, Female (map to 1-4y)
+    Hv8EyDqwdTx: "1-4 Years, Male" # 0-59 Months, Male (map to 1-4y)
+
+    # 5-14 years with sex
+    hTmIJyVbDo4: "5-14 Years, Male" # Preserves both age and sex
+    GZA09C0otqJ: "5-14 Years, Female" # Preserves both age and sex
+    ij2W5hPD7HD: "5-14 Years, Female" # Preserves both age and sex
+    BrcMh2dx8bn: "5-14 Years, Male" # Preserves both age and sex
+    ggMpvxpZTIe: "5-14 Years, Male" # Preserves both age and sex
+    HsNVEcl73V4: "5-14 Years, Female" # 5-9 Years, Female (map to 5-14y)
+
+    # 10-14 years with sex (subset of 5-14)
+    brsffP2gVWb: "5-14 Years, Female" # 10-14 Years, Female (map to 5-14y)
+    Zf9SR3RajI9: "5-14 Years, Male" # 10-14 Years, Male (map to 5-14y)
+
+    # 15-18 years with sex
+    ShyCEBPeT6Z: "15-49 Years, Female" # 15-18 Years, Female (map to 15-49y)
+    jgH1y6Wf69o: "15-49 Years, Male" # 15-18 Years, Male (map to 15-49y)
+
+    # 19-29 years with sex
+    hAgmwgyx4Yg: "15-49 Years, Male" # 19-29 Years, Male (map to 15-49y)
+    jHeReQ7hAsj: "15-49 Years, Female" # 19-29 Years, Female (map to 15-49y)
+
+    # 15-45/49 years with sex
+    BSicXomDzzl: "15-49 Years, Female" # 15-45 Years, Female
+    yuxSh3vXvHs: "15-49 Years, Male" # 15-45 Years, Male
+    eCrEG1clIfW: "15-49 Years, Female" # 15-45 Years, Female
+    YEptCQo7P9u: "15-49 Years, Male" # 15-49 Years, Male
+    kNPXF047CKt: "15-49 Years, Female" # 15-49 Years, Female
+
+    # 30-59 years with sex (map to 50+)
+    XyDur6bqLLb: ">45 Years, Male" # 30-59 Years, Male (map to 50+)
+    TgESFq0URKy: ">45 Years, Female" # 30-59 Years, Female (map to 50+)
+
+    # 45+ years with sex
+    jK3iCVqk4mF: ">45 Years, Male" # >45 Years, Male
+    yJFwgRqotdF: ">45 Years, Female" # >45 Years, Female
+    ihVzBEWyP7t: ">45 Years, Male" # >45 Years, Male
+
+    # 50-60 years with sex
+    Z8Ax0Qx4uIm: ">45 Years, Male" # 50-60 Years, Male (map to 50+)
+    Z5rgsOKyPpN: ">45 Years, Female" # 50-60 Years, Female (map to 50+)
+
+    # 60+ years with sex
+    tCHs5kgXdVT: ">45 Years, Female" # ≥60 Years, Female
+    Fzyaj7aIxO0: ">45 Years, Male" # ≥60 Years, Male
+    iGpMRWrq0Ym: ">45 Years, Male" # ≥60 Years, Male
+    uqpQtb1YgAR: ">45 Years, Female" # ≥60 Years, Female
+
+    # Service delivery type mappings with sex information preserved
+    # Fixed/Static service delivery (preserve sex information where available)
+    NyjagaNUNCR: "Fixed" # Fixed (no sex specified)
+    A5imXdqt4Vr: "Fixed, Male" # Fixed with Male (preserves sex)
+    L2Z8iSILBU5: "Fixed, Female" # Fixed with Female (preserves sex)
+    OMZK5PT2Tv0: "Static" # Static (no sex specified)
+    Swg2empJ0AE: "Static, Male" # Static with Male (preserves sex)
+    Iu9y3Eszlg3: "Static, Female" # Static with Female (preserves sex)
+
+    # Mobile service delivery (preserve sex information where available)
+    Oim0mqkQgjP: "Mobile" # Mobile (no sex specified)
+    TexiRMPbndI: "Mobile, Male" # Mobile with Male (preserves sex)
+    pzF8Mwh977s: "Mobile, Female" # Mobile with Female (preserves sex)
+
+    # Special populations (preserve age and sex information)
+    # Pregnant women (preserve age information where available)
+    rf9bhUx64Tz: "Pregnant, Female" # Pregnant
+    EOnlkSRKo2q: "15-49 Years, Female" # 15-49 Years, Pregnant (map to age+sex)
+    cudN7gi8YHS: "Lactating, Female" # Lactating
+
+    # People with disabilities (PWD) - preserve age and sex
+    DKMwEvrappA: ">45 Years, Female" # ≥60 Years, PWD Female
+    DS6s6ikg066: ">45 Years, Female" # ≥60 Years, PWD Female
+    oZF1jjtrftU: ">45 Years, Male" # ≥60 Years, PWD Male
+    MQYvQHHnlmL: "15-49 Years, Male" # 15-49 Years, PWD Male
+    oxWrbL0poFF: "15-49 Years, Female" # 15-49 Years, PWD Female
+    l8eKk2R7FTk: "15-49 Years, Female" # 15-18 Years, PWD Female (map to 15-49y)
+    jyhudu6pkIR: "15-49 Years, Female" # 19-29 Years, PWD Female (map to 15-49y)
+    IjqVkm50vZa: "15-49 Years, Male" # 19-29 Years, PWD Male (map to 15-49y)
+    H3V2ItKJEu9: ">45 Years, Male" # 30-59 Years, PWD Male (map to 50+)
+    riuzsNyxuMx: ">45 Years, Male" # 50-60 Years, PWD Male (map to 50+)
+    diC5Vm2qjoD: ">45 Years, Female" # 50-60 Years, PWD Female (map to 50+)
+    lAYZQcnepO3: "5-14 Years, Male" # 5-9 Years, PWD Male (map to 5-14y)
+    t5aBX1FAnjw: "5-14 Years, Female" # 5-14 Years, PWD Female
+    dEsjoZVRewt: "5-14 Years, Male" # 10-14 Years, PWD Male (map to 5-14y)
+    oIm5KcJNZGW: "1-4 Years, Female" # 1-4 Years, PWD Female
+    dxurITZpbLj: "1-4 Years, Male" # 0-59 Months, PWD Male (map to 1-4y)
+
+    # Visit type categories (preserve age and sex where available)
+    swxQ1x6k8qa: "15-49 Years, Female" # ≥18 years, New visit, Female (map to 15-49y)
+    K3ygh2MQMwd: "15-49 Years, Female" # ≥18 years, Follow up visit, Female (map to 15-49y)
+    RVtPuFlR30h: "5-14 Years, Female" # 0-17 Years, New visit, Female (map to 5-14y)
+    vK92nJBwPfm: "5-14 Years, Female" # 0-17 Years, Follow up visit, Female (map to 5-14y)
+    LB0xYqODvTU: "15-49 Years" # ≥18 years (no sex specified)
+
+    # Case type categories (preserve age information where available)
+    FBr2TA6Pt0k: "15-49 Years" # New Case, 18-49 Years (no sex specified)
+    ehpsPuewTxO: "15-49 Years" # Follow up case, 18-49 Years (no sex specified)
+    z71W9bKUGbu: ">45 Years" # New Case, ≥50 Years (no sex specified)
+
+    # Composite demographic mappings (age + sex combinations)
+    # Format: "Age Group, Sex" - common in DHIS2 category combinations
+    "0-11m, Male": "0-11m_Male"
+    "0-11m, Female": "0-11m_Female"
+    "1-4y, Male": "1-4y_Male"
+    "1-4y, Female": "1-4y_Female"
+    "5-14y, Male": "5-14y_Male"
+    "5-14y, Female": "5-14y_Female"
+    "15-49y, Male": "15-49y_Male"
+    "15-49y, Female": "15-49y_Female"
+    "50+y, Male": "50+y_Male"
+    "50+y, Female": "50+y_Female"
+  organisation_units:
+    level_1: National
+    level_2: Governorate
+    level_3: District
+geography:
+  coordinate_system: WGS84
+  shapefile_path: data/shapefiles/yemen/
+  admin_levels:
+  - admin0
+  - admin1
+  - admin2
+reporting:
+  default_period: monthly
+  fiscal_year_start: 1
+  languages:
+  - en
+  - ar
+  time_zone: Asia/Aden
+ai_customization:
+  deployment_type: humanitarian
+  population_description: Conflict-affected populations, displaced persons
+  context_name: yemen_humanitarian

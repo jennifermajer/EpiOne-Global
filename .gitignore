@@ -1,26 +1,114 @@
-# R
+# R Project Files
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 *.Rproj
+.Rprofile
 
-# Data files
+# R Environment & Package Management
+renv/
+.Rprofile.site
+.Rprofile.local
+
+# Data Files & Databases
 data/raw/*
 data/processed/*
+data/country_excel_databases/
+data/metadata/*.xlsx
+data/shapefiles/
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 
-# Credentials
-config/secrets.yml
-*.env
+# Sensitive Configuration Files
+.Renviron*
+.env*
+*credentials*
+*secrets*
+*.key
+*.pem
+*.p12
+*.pfx
 
-# Output files
+# API Keys & Tokens (Environment Variables)
+# These should be in .Renviron, but adding patterns as backup
+*api_key*
+*api-key*
+*token*
+*password*
+dhis2_credentials*
+
+# Cache & Temporary Files
+data/icd11_cache/
+data/dhis2_cache*
+data/*_cache/
+*cache*
+*.rds
+*.tmp
+*~
+*.log
+*.audit.log
+epibot_audit.log
+ai_audit.log
+render_output.log
+
+# Output Files
 output/
+reports/*.html
+reports/*_files/
 *.html
 *.pdf
+*.docx
 
-# Temporary files
+# Backup & Recovery Files
+*.bak
+*.backup
 *~
-*.tmp
-*.log
+*.swp
+*.swo
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# IDE Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logo Variants (Internal Use)
+logo2.png
+logo3.png
+*_logo_internal*
+
+# Country-Specific Sensitive Data
+# (Country config files are kept but should not contain credentials)
+
+# AI & ML Model Files
+*.model
+*.pkl
+*.joblib
+models/
+
+# Deployment & Infrastructure
+docker-compose.override.yml
+.env.local
+.env.production
+kubernetes/secrets/
+terraform.tfvars
+*.terraform
+
+# Testing Data with PII
+test_data_real/
+*_with_pii*
+*_patient_data*
+
+# Rsconnect Deployment Credentials
+rsconnect/

@@ -1,0 +1,2458 @@
+# taxonomy/base.yaml
+# =============================================================================
+# IMC Customized Global Base Canonicals (v1.1)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Standards this aligns to (global naming + surveillance)
+# -----------------------------------------------------------------------------
+# Naming conventions
+#   - ICD-11 MMS (WHO), current release – canonical disease names, British
+#     English spelling, and families/chapters used for normalization. [R1]
+#
+# Surveillance & program standards
+#   - WHO IDSR Technical Guidelines, 3rd edition – priority conditions and
+#     syndromic/transmission groupings used for national surveillance. [R2]
+#   - WHO Surveillance Standards for Vaccine-Preventable Diseases, 2nd ed. –
+#     disease-specific VPD surveillance standards (used here as a VPD tag/roll-up,
+#     not a primary category). [R3]
+#   - WHO Global Influenza Programme – ILI/SARI case definitions for respiratory
+#     syndromic surveillance. [R4]
+#   - WHO/GPEI – AFP & polio surveillance:
+#       • Global guidance for conducting AFP surveillance (2025)
+#       • Global Polio Surveillance Action Plan 2025–2026. [R5–R6]
+#   - WHO/GTFCC – Public-health surveillance for cholera (2024): suspected vs
+#     confirmed case definitions and outbreak use. [R7]
+#   - WHO Global HIV, Viral Hepatitis & STIs Programme – Consolidated guidelines
+#     and GHSS 2022–2030 framing for STBBI grouping. [R8]
+#
+# Notes
+#   - Primary categories are mutually exclusive (e.g., Respiratory Infectious,
+#     Enteric & Food/Water-borne, Vector-borne, CNS Infections, STBBI, NTDs,
+#     Zoonoses (non-vector), Skin/Eye/ENT, NCDs (non-MNS), MNS, MNH/RH, Nutrition,
+#     Injury & External Causes, General/Unspecified, Encounters/Services, Admin).
+#   - "Vaccine-preventable" is implemented as a roll-up/tag (VPD), not a primary
+#     category, to avoid overlap while supporting EPI reporting. [R3]
+# =============================================================================
+
+meta:
+  name: "IMC Customized Global Base Canonicals"
+  version: "2025-08-16-corrected"
+  inherits: "" # no parent – this IS the base
+  date_end_option: "epi.date_end"
+
+# Order for top-level rollups/visuals
+category_levels:
+- Enteric & Food/Water-borne Infections
+- Respiratory Infectious Diseases
+- Vector-borne Diseases
+- Viral Haemorrhagic Fevers
+- CNS Infections (Meningitis/Encephalitis)
+- STIs & Blood-borne Infections (STBBI)
+- Parasitic & Neglected Tropical Diseases (NTDs)
+- Zoonoses (non-vector) & High-Consequence Pathogens
+- Skin, Eye & ENT Disorders
+- Non-Communicable Diseases (non-MNS)
+- Mental, Neurological & Substance Use (MNS) Disorders
+- Maternal, Newborn & Reproductive Health
+- Nutrition
+- Injury & External Causes
+- General Signs/Symptoms & Unspecified
+- Encounters/Services
+- Administrative Events
+
+# -----------------------------------------------------------------------------
+# PRIMARY SOURCE OF TRUTH
+# Each canonical can include:
+#   category: string (REQUIRED)
+#   severity: High|Medium|Low (optional; overrides section-level defaults)
+#   attributes: [VPD, Outbreak-prone, Climate-sensitive, AMR-relevant] (optional tags)
+#   epidemic_groups: [Vaccine_Preventable, Water_Food_Borne, Respiratory_Epidemic, Vector_Borne, Viral_Hemorrhagic_Fever]
+#   seasonal: [Winter, Spring, Summer, Autumn]
+#   age_risks: [Under_5, School_Age, Adults, Elderly, Pregnant]
+#   climate_groups: [Vector-borne, Water_and_Food_borne, Heat_and_Air_Quality_Sensitive, Extreme_Weather_Injury_and_Exposure,
+#                    Nutrition_and_Food_Security, Mental_Health_Disaster_related, Maternal_and_Neonatal_Sensitivity]
+# -----------------------------------------------------------------------------
+
+canonicals:
+
+  # ------------------- Respiratory infectious diseases -------------------
+  "Acute Upper Respiratory Infection":
+    category: "Respiratory Infectious Diseases"
+    severity: "Low"
+    epidemic_groups: [ Respiratory_Epidemic ]
+    seasonal: [ Winter, Autumn ]
+    age_risks: [ Under_5, School_Age ]
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "Lower Respiratory Infection":
+    category: "Respiratory Infectious Diseases"
+    severity: "Medium"
+    epidemic_groups: [ Respiratory_Epidemic ]
+    seasonal: [ Winter, Autumn ]
+    age_risks: [ Under_5, Elderly ]
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "Pneumonia":
+    category: "Respiratory Infectious Diseases"
+    severity: "Medium"
+    epidemic_groups: [ Respiratory_Epidemic ]
+    seasonal: [ Winter, Autumn ]
+    age_risks: [ Under_5, Elderly ]
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "Influenza-Like Illness":
+    category: "Respiratory Infectious Diseases"
+    severity: "Medium"
+    attributes: [ Outbreak-prone, Climate-sensitive ]
+    epidemic_groups: [ Respiratory_Epidemic ]
+    seasonal: [ Winter, Autumn ]
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "Severe Acute Respiratory Infection":
+    category: "Respiratory Infectious Diseases"
+    severity: "High"
+    attributes: [ Outbreak-prone, Climate-sensitive ]
+    epidemic_groups: [ Respiratory_Epidemic ]
+    seasonal: [ Winter, Autumn ]
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "Influenza (Confirmed)":
+    category: "Respiratory Infectious Diseases"
+    severity: "Medium"
+    attributes: [ Outbreak-prone ]
+    epidemic_groups: [ Respiratory_Epidemic ]
+    seasonal: [ Winter, Autumn ]
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "COVID-19":
+    category: "Respiratory Infectious Diseases"
+    severity: "Medium"
+    attributes: [ Outbreak-prone, Climate-sensitive ]
+    epidemic_groups: [ Respiratory_Epidemic ]
+    seasonal: [ Winter ]
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "Acute Bronchitis/Bronchiolitis":
+    category: "Respiratory Infectious Diseases"
+    severity: "Low"
+    seasonal: [ Winter ]
+
+  "Acute Epiglottitis":
+    category: "Respiratory Infectious Diseases"
+    severity: "High"
+
+  "Acute Tonsillitis":
+    category: "Respiratory Infectious Diseases"
+    severity: "Low"
+
+  "Streptococcal Pharyngitis":
+    category: "Respiratory Infectious Diseases"
+    severity: "Low"
+    attributes: [ AMR-relevant ]
+
+  "Pertussis":
+    category: "Respiratory Infectious Diseases"
+    severity: "Medium"
+    attributes: [ VPD, Outbreak-prone ]
+    epidemic_groups: [ Vaccine_Preventable, Respiratory_Epidemic ]
+    seasonal: [ Winter, Autumn ]
+
+  "Diphtheria":
+    category: "Respiratory Infectious Diseases"
+    severity: "Medium"
+    attributes: [ VPD, Outbreak-prone ]
+    epidemic_groups: [ Vaccine_Preventable, Respiratory_Epidemic ]
+
+  "Measles":
+    category: "Respiratory Infectious Diseases"
+    severity: "Medium"
+    attributes: [ VPD, Outbreak-prone ]
+    epidemic_groups: [ Vaccine_Preventable ]
+    seasonal: [ Spring, Autumn ]
+    age_risks: [ Under_5 ]
+
+  "Rubella":
+    category: "Respiratory Infectious Diseases"
+    severity: "Medium"
+    attributes: [ VPD ]
+    epidemic_groups: [ Vaccine_Preventable ]
+    seasonal: [ Spring, Autumn ]
+
+  "Mumps":
+    category: "Respiratory Infectious Diseases"
+    severity: "Low"
+    attributes: [ VPD ]
+    epidemic_groups: [ Vaccine_Preventable ]
+
+  "Varicella (Chickenpox)":
+    category: "Respiratory Infectious Diseases"
+    severity: "Low"
+    attributes: [ VPD ]
+    epidemic_groups: [ Vaccine_Preventable ]
+    seasonal: [ Spring, Autumn ]
+
+  "Tuberculosis (Unspecified)":
+    category: "Respiratory Infectious Diseases"
+    severity: "Medium"
+    attributes: [ AMR-relevant ]
+    epidemic_groups: [ Respiratory_Epidemic ]
+    age_risks: [ Adults ]
+
+  "Tuberculosis (Pulmonary)":
+    category: "Respiratory Infectious Diseases"
+    severity: "Medium"
+    attributes: [ AMR-relevant ]
+    epidemic_groups: [ Respiratory_Epidemic ]
+    age_risks: [ Adults ]
+
+  "Tuberculosis (Extrapulmonary)":
+    category: "Respiratory Infectious Diseases"
+    severity: "Medium"
+    attributes: [ AMR-relevant ]
+    age_risks: [ Adults ]
+
+  "Respiratory Disorder (Other)":
+    category: "Respiratory Infectious Diseases"
+
+  # --------------------- Enteric & food/water-borne ----------------------
+  "Acute Watery Diarrhoea (Suspected Cholera)":
+    category: "Enteric & Food/Water-borne Infections"
+    severity: "High"
+    attributes: [ Outbreak-prone, Climate-sensitive ]
+    epidemic_groups: [ Water_Food_Borne ]
+    seasonal: [ Summer ]
+    climate_groups: [ Water_and_Food_borne ]
+
+  "Cholera (Confirmed)":
+    category: "Enteric & Food/Water-borne Infections"
+    severity: "High"
+    attributes: [ Outbreak-prone, Climate-sensitive ]
+    epidemic_groups: [ Water_Food_Borne ]
+    seasonal: [ Summer ]
+    climate_groups: [ Water_and_Food_borne ]
+
+  "Acute Bloody Diarrhoea (Suspected Shigellosis)":
+    category: "Enteric & Food/Water-borne Infections"
+    severity: "Medium"
+    attributes: [ Outbreak-prone, AMR-relevant ]
+    epidemic_groups: [ Water_Food_Borne ]
+    seasonal: [ Summer ]
+    climate_groups: [ Water_and_Food_borne ]
+
+  "Shigellosis (Confirmed)":
+    category: "Enteric & Food/Water-borne Infections"
+    severity: "High"
+    attributes: [ Outbreak-prone, AMR-relevant ]
+    epidemic_groups: [ Water_Food_Borne ]
+    seasonal: [ Summer ]
+    climate_groups: [ Water_and_Food_borne ]
+
+  "Diarrhoea (Other)":
+    category: "Enteric & Food/Water-borne Infections"
+    severity: "Low"
+    seasonal: [ Summer ]
+    climate_groups: [ Water_and_Food_borne ]
+
+  "Typhoid Fever":
+    category: "Enteric & Food/Water-borne Infections"
+    severity: "Medium"
+    attributes: [ Outbreak-prone, AMR-relevant ]
+    epidemic_groups: [ Water_Food_Borne ]
+    seasonal: [ Summer ]
+    climate_groups: [ Water_and_Food_borne ]
+
+  "Paratyphoid Fever":
+    category: "Enteric & Food/Water-borne Infections"
+    severity: "Medium"
+    epidemic_groups: [ Water_Food_Borne ]
+    seasonal: [ Summer ]
+    climate_groups: [ Water_and_Food_borne ]
+
+  "Amoebiasis":
+    category: "Enteric & Food/Water-borne Infections"
+    severity: "Low"
+    seasonal: [ Summer ]
+    climate_groups: [ Water_and_Food_borne ]
+
+  "Giardiasis":
+    category: "Enteric & Food/Water-borne Infections"
+    severity: "Low"
+    seasonal: [ Summer ]
+    climate_groups: [ Water_and_Food_borne ]
+
+  "Foodborne Intoxication":
+    category: "Enteric & Food/Water-borne Infections"
+    severity: "Low"
+    seasonal: [ Summer ]
+    climate_groups: [ Water_and_Food_borne ]
+
+  "Rotavirus Gastroenteritis":
+    category: "Enteric & Food/Water-borne Infections"
+    severity: "Medium"
+    attributes: [ VPD ]
+    epidemic_groups: [ Vaccine_Preventable ]
+
+  "Hepatitis A":
+    category: "Enteric & Food/Water-borne Infections"
+    severity: "Medium"
+    attributes: [ VPD, Outbreak-prone ]
+    epidemic_groups: [ Vaccine_Preventable, Water_Food_Borne ]
+    seasonal: [ Summer ]
+    climate_groups: [ Water_and_Food_borne ]
+
+  "Hepatitis E":
+    category: "Enteric & Food/Water-borne Infections"
+    severity: "Medium"
+    attributes: [ Outbreak-prone ]
+    epidemic_groups: [ Water_Food_Borne ]
+    seasonal: [ Summer ]
+    climate_groups: [ Water_and_Food_borne ]
+
+  # ------------------------------ CNS infections ------------------------------
+  "Meningitis (Suspected)":
+    category: "CNS Infections (Meningitis/Encephalitis)"
+    severity: "High"
+    seasonal: [ Winter, Spring ]
+    age_risks: [ Under_5 ]
+
+  "Encephalitis":
+    category: "CNS Infections (Meningitis/Encephalitis)"
+    severity: "Medium"
+
+  "Acute Flaccid Paralysis":
+    category: "CNS Infections (Meningitis/Encephalitis)"
+    severity: "High"
+    attributes: [ VPD ]
+    epidemic_groups: [ Vaccine_Preventable ]
+    age_risks: [ Under_5 ]
+
+  "Poliomyelitis (Confirmed)":
+    category: "CNS Infections (Meningitis/Encephalitis)"
+    severity: "High"
+    attributes: [ VPD, Outbreak-prone ]
+    epidemic_groups: [ Vaccine_Preventable ]
+
+  # ------------------------------ Vector-borne --------------------------------
+  "Malaria (Suspected)":
+    category: "Vector-borne Diseases"
+    severity: "Medium"
+    attributes: [ Outbreak-prone, Climate-sensitive ]
+    epidemic_groups: [ Vector_Borne ]
+    seasonal: [ Summer ]
+    climate_groups: [ Vector-borne ]
+
+  "Malaria (Confirmed)":
+    category: "Vector-borne Diseases"
+    severity: "Medium"
+    attributes: [ Outbreak-prone, Climate-sensitive ]
+    epidemic_groups: [ Vector_Borne ]
+    seasonal: [ Summer ]
+    climate_groups: [ Vector-borne ]
+
+  "Dengue":
+    category: "Vector-borne Diseases"
+    severity: "Medium"
+    attributes: [ Outbreak-prone, Climate-sensitive ]
+    epidemic_groups: [ Vector_Borne ]
+    seasonal: [ Summer ]
+    climate_groups: [ Vector-borne ]
+
+  "Chikungunya":
+    category: "Vector-borne Diseases"
+    severity: "Medium"
+    attributes: [ Outbreak-prone, Climate-sensitive ]
+    epidemic_groups: [ Vector_Borne ]
+    seasonal: [ Summer ]
+    climate_groups: [ Vector-borne ]
+
+  "Zika":
+    category: "Vector-borne Diseases"
+    severity: "Medium"
+    attributes: [ Outbreak-prone, Climate-sensitive ]
+    epidemic_groups: [ Vector_Borne ]
+    seasonal: [ Summer ]
+    climate_groups: [ Vector-borne ]
+
+  "Yellow Fever":
+    category: "Vector-borne Diseases"
+    severity: "High"
+    attributes: [ VPD, Outbreak-prone, Climate-sensitive ]
+    epidemic_groups: [ Vaccine_Preventable, Vector_Borne ]
+    climate_groups: [ Vector-borne ]
+
+  "West Nile Fever":
+    category: "Vector-borne Diseases"
+    severity: "Medium"
+    attributes: [ Climate-sensitive ]
+    epidemic_groups: [ Vector_Borne ]
+    climate_groups: [ Vector-borne ]
+
+  "Japanese Encephalitis":
+    category: "Vector-borne Diseases"
+    severity: "High"
+    attributes: [ VPD, Outbreak-prone, Climate-sensitive ]
+    epidemic_groups: [ Vaccine_Preventable, Vector_Borne ]
+    climate_groups: [ Vector-borne ]
+
+  "Rift Valley Fever":
+    category: "Vector-borne Diseases"
+    severity: "High"
+    attributes: [ Outbreak-prone, Climate-sensitive ]
+    epidemic_groups: [ Vector_Borne ]
+    climate_groups: [ Vector-borne ]
+
+  "Plague":
+    category: "Vector-borne Diseases"
+    severity: "High"
+    attributes: [ Outbreak-prone ]
+    epidemic_groups: [ Vector_Borne ]
+
+  "Leishmaniasis (Unspecified)":
+    category: "Vector-borne Diseases"
+    severity: "Medium"
+    climate_groups: [ Vector-borne ]
+
+  "Leishmaniasis (Cutaneous)":
+    category: "Vector-borne Diseases"
+    severity: "Medium"
+    climate_groups: [ Vector-borne ]
+
+  "Leishmaniasis (Visceral)":
+    category: "Vector-borne Diseases"
+    severity: "High"
+    climate_groups: [ Vector-borne ]
+
+  # ------------------------- Viral haemorrhagic fevers ------------------------
+  "Viral Haemorrhagic Fevers (Suspected)":
+    category: "Viral Haemorrhagic Fevers"
+    severity: "High"
+    attributes: [ Outbreak-prone ]
+
+  "Ebola Virus Disease":
+    category: "Viral Haemorrhagic Fevers"
+    severity: "High"
+    attributes: [ Outbreak-prone ]
+
+  "Marburg Virus Disease":
+    category: "Viral Haemorrhagic Fevers"
+    severity: "High"
+    attributes: [ Outbreak-prone ]
+
+  "Lassa Fever":
+    category: "Viral Haemorrhagic Fevers"
+    severity: "High"
+    attributes: [ Outbreak-prone ]
+
+  "Crimean-Congo Haemorrhagic Fever":
+    category: "Viral Haemorrhagic Fevers"
+    severity: "High"
+    attributes: [ Outbreak-prone ]
+
+  # ----------------- STIs & blood-borne infections (STBBI) -------------------
+  "HIV Infection":
+    category: "STIs & Blood-borne Infections (STBBI)"
+    severity: "Medium"
+
+  "Hepatitis B":
+    category: "STIs & Blood-borne Infections (STBBI)"
+    severity: "Medium"
+    attributes: [ VPD ]
+
+  "Hepatitis C":
+    category: "STIs & Blood-borne Infections (STBBI)"
+    severity: "Medium"
+
+  "Viral Hepatitis (Other)":
+    category: "STIs & Blood-borne Infections (STBBI)"
+    severity: "Medium"
+
+  "Syphilis":
+    category: "STIs & Blood-borne Infections (STBBI)"
+    severity: "Medium"
+
+  "Gonorrhoea":
+    category: "STIs & Blood-borne Infections (STBBI)"
+    severity: "Medium"
+    attributes: [ AMR-relevant ]
+
+  "Chlamydia":
+    category: "STIs & Blood-borne Infections (STBBI)"
+    severity: "Low"
+
+  "Trichomoniasis":
+    category: "STIs & Blood-borne Infections (STBBI)"
+    severity: "Low"
+
+  "Genital Herpes":
+    category: "STIs & Blood-borne Infections (STBBI)"
+    severity: "Low"
+
+  "Anogenital Warts (HPV)":
+    category: "STIs & Blood-borne Infections (STBBI)"
+    severity: "Low"
+
+  "Herpes Simplex":
+    category: "STIs & Blood-borne Infections (STBBI)"
+    severity: "Low"
+
+  # -------- Parasitic & Neglected Tropical Diseases (non-vector) -------------
+  "Helminthiasis (Unspecified)":
+    category: "Parasitic & Neglected Tropical Diseases (NTDs)"
+    severity: "Low"
+
+  "Leprosy (Hansen Disease)":
+    category: "Parasitic & Neglected Tropical Diseases (NTDs)"
+    severity: "Medium"
+
+  "Trachoma":
+    category: "Parasitic & Neglected Tropical Diseases (NTDs)"
+    severity: "Low"
+
+  "Schistosomiasis":
+    category: "Parasitic & Neglected Tropical Diseases (NTDs)"
+    severity: "Medium"
+
+  "Ascariasis":
+    category: "Parasitic & Neglected Tropical Diseases (NTDs)"
+    severity: "Low"
+
+  "Trichuriasis":
+    category: "Parasitic & Neglected Tropical Diseases (NTDs)"
+    severity: "Low"
+
+  "Hookworm Disease":
+    category: "Parasitic & Neglected Tropical Diseases (NTDs)"
+    severity: "Low"
+
+  "Strongyloidiasis":
+    category: "Parasitic & Neglected Tropical Diseases (NTDs)"
+    severity: "Medium"
+
+  "Taeniasis/Cysticercosis":
+    category: "Parasitic & Neglected Tropical Diseases (NTDs)"
+    severity: "Medium"
+
+  "Echinococcosis":
+    category: "Parasitic & Neglected Tropical Diseases (NTDs)"
+    severity: "Medium"
+
+  "Onchocerciasis":
+    category: "Parasitic & Neglected Tropical Diseases (NTDs)"
+    severity: "Medium"
+
+  "Lymphatic Filariasis":
+    category: "Parasitic & Neglected Tropical Diseases (NTDs)"
+    severity: "Medium"
+
+  # ---- Zoonoses (non-vector) & High-Consequence Pathogens (corrected) ----
+  "Tetanus":
+    category: "Zoonoses (non-vector) & High-Consequence Pathogens"
+    severity: "High"
+    attributes: [ VPD ]
+
+  "Neonatal Tetanus":
+    category: "Zoonoses (non-vector) & High-Consequence Pathogens"
+    severity: "High"
+    attributes: [ VPD ]
+
+  "Rabies":
+    category: "Zoonoses (non-vector) & High-Consequence Pathogens"
+    severity: "High"
+    attributes: [ Outbreak-prone ]
+
+  "Anthrax":
+    category: "Zoonoses (non-vector) & High-Consequence Pathogens"
+    severity: "High"
+    attributes: [ Outbreak-prone ]
+
+  "Brucellosis":
+    category: "Zoonoses (non-vector) & High-Consequence Pathogens"
+    severity: "Medium"
+    seasonal: [ Spring ]
+    age_risks: [ Adults ]
+
+  "Leptospirosis":
+    category: "Zoonoses (non-vector) & High-Consequence Pathogens"
+    severity: "Medium"
+    climate_groups: [ Water_and_Food_borne ]
+
+  "Q Fever":
+    category: "Zoonoses (non-vector) & High-Consequence Pathogens"
+    severity: "Medium"
+
+  "Mpox":
+    category: "Zoonoses (non-vector) & High-Consequence Pathogens"
+    severity: "Medium"
+    attributes: [ Outbreak-prone ]
+
+  # ------------------------------ Skin/Eye/ENT ------------------------------
+  "Acute Sinusitis":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Chronic Otitis Media":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Acute Otitis Media":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Otitis Externa":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Otitis Media (Unspecified)":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Eustachian Tube Dysfunction":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Tympanic Membrane Perforation":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Medium"
+
+  "Labyrinthitis":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Medium"
+
+  "Presbyacusis":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Tinnitus":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Hearing Loss":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Blepharitis/Stye/Chalazion":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Conjunctivitis":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+    seasonal: [ Summer ]
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "Corneal Ulcer":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Medium"
+
+  "Keratitis":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Medium"
+
+  "Keratoconus":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Pterygium":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Cataract":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Glaucoma":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Medium"
+
+  "Dry Eye Syndrome":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Retinal Detachment (Suspected)":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "High"
+
+  "Retinal Vascular Occlusion":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "High"
+
+  "Optic Nerve Disorder":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Medium"
+
+  "Diabetic Retinopathy":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Medium"
+
+  "Eye Disorder (Other)":
+    category: "Skin, Eye & ENT Disorders"
+
+  "Ophthalmic Disorder (Other)":
+    category: "Skin, Eye & ENT Disorders"
+
+  "ENT Disorder (Other)":
+    category: "Skin, Eye & ENT Disorders"
+
+  "Ear Disorder (Other)":
+    category: "Skin, Eye & ENT Disorders"
+
+  "Allergic Rhinitis":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+    seasonal: [ Spring ]
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "Dermatitis":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Dermatitis (Seborrhoeic)":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Cellulitis":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Medium"
+
+  "Psoriasis":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Dermatophytosis (Tinea)":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Scabies":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Impetigo":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Urticaria":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Pediculosis":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Herpes Zoster (Shingles)":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Medium"
+
+  "Foreign Body (Ear)":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Albinism":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Low"
+
+  "Blindness":
+    category: "Skin, Eye & ENT Disorders"
+    severity: "Medium"
+
+  # ---------------------------- Non-communicable ----------------------------
+  "Asthma":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Medium"
+    seasonal: [ Winter ]
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "Chronic Obstructive Pulmonary Disease":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Medium"
+    seasonal: [ Winter, Autumn ]
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "Ischaemic Heart Disease":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "High"
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "Acute Myocardial Infarction":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "High"
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "Hypertension":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Medium"
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "Hypertensive Crisis":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "High"
+
+  "Secondary Hypertension":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Medium"
+
+  "Hypotension":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Low"
+
+  "Heart Failure":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "High"
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "Peripheral Vascular Disease":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Medium"
+
+  "Dyslipidaemia":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Low"
+
+  "Diabetes Mellitus":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Medium"
+
+  "Chronic Kidney Disease":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Medium"
+
+  "Acute Kidney Injury":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "High"
+
+  "Nephritic Syndrome":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Medium"
+
+  "Urological/Nephrology Disorder (Other)":
+    category: "Non-Communicable Diseases (non-MNS)"
+
+  "Chronic Liver Disease":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Medium"
+
+  "Endocrine/Metabolic Disorder (Other)":
+    category: "Non-Communicable Diseases (non-MNS)"
+
+  "Hypothyroidism":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Low"
+
+  "Hyperthyroidism":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Medium"
+
+  "Hypoparathyroidism":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Low"
+
+  "Gastrointestinal Disorder (Other)":
+    category: "Non-Communicable Diseases (non-MNS)"
+
+  "Overweight/Obesity":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Low"
+
+  "Arthritis":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Medium"
+
+  "Osteoarthritis (Multiple Joints)":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Medium"
+
+  "Osteoporosis":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Medium"
+
+  "Osteomalacia":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Low"
+
+  "Gout":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Low"
+
+  "Sickle Cell/Thalassaemia":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "Medium"
+
+  "Neoplasm (Unspecified)":
+    category: "Non-Communicable Diseases (non-MNS)"
+    severity: "High"
+
+  "Haematologic/Immune Disorder (Other)":
+    category: "Non-Communicable Diseases (non-MNS)"
+
+  "Lifestyle Problems":
+    category: "Non-Communicable Diseases (non-MNS)"
+
+  "Appendicitis":
+    category: "Non-Communicable Diseases (non-MNS)"
+
+  "Benign Prostatic Hyperplasia":
+    category: "Non-Communicable Diseases (non-MNS)"
+    age_risks: [ Elderly, Adults ]
+
+  "Cholecystitis/Cholelithiasis":
+    category: "Non-Communicable Diseases (non-MNS)"
+
+  "Inflammatory Bowel Disease":
+    category: "Non-Communicable Diseases (non-MNS)"
+
+  "Irritable Bowel Syndrome":
+    category: "Non-Communicable Diseases (non-MNS)"
+
+  "Peptic Ulcer":
+    category: "Non-Communicable Diseases (non-MNS)"
+
+  "Stroke/Cerebrovascular Accident":
+    category: "Non-Communicable Diseases (non-MNS)"
+
+  # ------------------ Mental, Neurological & Substance Use ------------------
+  "Major Depressive Disorder":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Medium"
+
+  "Bipolar Disorder":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Medium"
+
+  "Schizophrenia":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Medium"
+
+  "Anxiety Disorder":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Medium"
+
+  "Post-Traumatic Stress Disorder":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Medium"
+
+  "Attention-Deficit/Hyperactivity Disorder":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Low"
+
+  "Alcohol Use Disorder":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Medium"
+
+  "Substance Use Disorder":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Medium"
+
+  "Epilepsy":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Medium"
+
+  "Multiple Sclerosis":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Medium"
+
+  "Dementia":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "High"
+
+  "Parkinson's Disease":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Medium"
+
+  "Migraine":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Low"
+
+  "Other Headache Syndromes":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Low"
+
+  "Tension Headache":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Low"
+
+  "Trigeminal Neuralgia":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Medium"
+
+  "Facial Paralysis":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Medium"
+
+  "Hemiplegia":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "High"
+
+  "Paraplegia":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "High"
+
+  "Cerebral Palsy":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "High"
+
+  "Delirium":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "High"
+
+  "Vertigo":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+
+  "Dissociative Disorders":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Medium"
+
+  "Somatoform Disorders":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Low"
+
+  "Sleep Disorders":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Low"
+
+  "Social/Behavioral Problems":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "Low"
+
+  "Suicidal/Homicidal Ideation":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+    severity: "High"
+
+  "Neurological Disorder (Other)":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+
+  "Mental/Behavioural Disorder (Other)":
+    category: "Mental, Neurological & Substance Use (MNS) Disorders"
+
+  # --------- Maternal, Newborn & Reproductive Health (MNH/RH) --------------
+  "Urinary Tract Infection":
+    category: "Maternal, Newborn & Reproductive Health"
+    severity: "Low"
+    age_risks: [ Pregnant ]
+
+  "Vaginitis/Vulvitis":
+    category: "Maternal, Newborn & Reproductive Health"
+    severity: "Low"
+    age_risks: [ Pregnant ]
+
+  "Gestational Diabetes Mellitus":
+    category: "Maternal, Newborn & Reproductive Health"
+    severity: "Medium"
+    age_risks: [ Pregnant ]
+
+  "Preeclampsia":
+    category: "Maternal, Newborn & Reproductive Health"
+    severity: "High"
+    age_risks: [ Pregnant ]
+
+  "Postpartum Complication":
+    category: "Maternal, Newborn & Reproductive Health"
+    severity: "High"
+    age_risks: [ Pregnant ]
+
+  "Obstetric Complication":
+    category: "Maternal, Newborn & Reproductive Health"
+    severity: "High"
+    age_risks: [ Pregnant ]
+
+  "Normal Vaginal Delivery":
+    category: "Maternal, Newborn & Reproductive Health"
+
+  "Caesarean Section":
+    category: "Maternal, Newborn & Reproductive Health"
+
+  "Menstrual Disorder":
+    category: "Maternal, Newborn & Reproductive Health"
+    severity: "Low"
+
+  "Endometriosis":
+    category: "Maternal, Newborn & Reproductive Health"
+    severity: "Medium"
+
+  "Gynaecologic Condition":
+    category: "Maternal, Newborn & Reproductive Health"
+
+  "Dyspareunia":
+    category: "Maternal, Newborn & Reproductive Health"
+
+  "Genital Disorder (Other)":
+    category: "Maternal, Newborn & Reproductive Health"
+
+  "Hydrocele":
+    category: "Maternal, Newborn & Reproductive Health"
+
+  "Undescended Testis":
+    category: "Maternal, Newborn & Reproductive Health"
+
+  "Umbilical Hernia":
+    category: "Maternal, Newborn & Reproductive Health"
+
+  "Physiological Jaundice (Neonatal)":
+    category: "Maternal, Newborn & Reproductive Health"
+    age_risks: [ Under_5 ]
+
+  "Menopausal Disorders":
+    category: "Maternal, Newborn & Reproductive Health"
+
+  "Breast Lump":
+    category: "Maternal, Newborn & Reproductive Health"
+
+  "Congenital Anomaly":
+    category: "Maternal, Newborn & Reproductive Health"
+    age_risks: [ Under_5 ]
+
+  "Neonatal Complication":
+    category: "Maternal, Newborn & Reproductive Health"
+    age_risks: [ Under_5 ]
+
+  "Enuresis":
+    category: "Maternal, Newborn & Reproductive Health"
+    age_risks: [ School_Age ]
+
+  "Limb Deformity":
+    category: "Maternal, Newborn & Reproductive Health"
+    age_risks: [ Under_5 ]
+
+  "Hypospadias":
+    category: "Maternal, Newborn & Reproductive Health"
+    age_risks: [ Under_5 ]
+
+  # -------------------------------- Nutrition --------------------------------
+  "Severe Acute Malnutrition (Complicated)":
+    category: "Nutrition"
+    severity: "High"
+    age_risks: [ Under_5 ]
+    climate_groups: [ Nutrition_and_Food_Security ]
+
+  "Severe Acute Malnutrition (Uncomplicated)":
+    category: "Nutrition"
+    severity: "High"
+    age_risks: [ Under_5 ]
+    climate_groups: [ Nutrition_and_Food_Security ]
+
+  "Severe Acute Malnutrition (Unspecified)":
+    category: "Nutrition"
+    severity: "High"
+    age_risks: [ Under_5 ]
+    climate_groups: [ Nutrition_and_Food_Security ]
+
+  "Moderate Acute Malnutrition":
+    category: "Nutrition"
+    severity: "Medium"
+    age_risks: [ Under_5 ]
+    climate_groups: [ Nutrition_and_Food_Security ]
+
+  "Underweight":
+    category: "Nutrition"
+    severity: "Low"
+    age_risks: [ Under_5 ]
+    climate_groups: [ Nutrition_and_Food_Security ]
+
+  "Vitamin Deficiency":
+    category: "Nutrition"
+    severity: "Low"
+    age_risks: [ Under_5 ]
+    climate_groups: [ Nutrition_and_Food_Security ]
+
+  "Growth Delay":
+    category: "Nutrition"
+    severity: "Low"
+    age_risks: [ Under_5 ]
+    climate_groups: [ Nutrition_and_Food_Security ]
+
+  "Vitamin B12/Folate Deficiency Anaemia":
+    category: "Nutrition"
+    severity: "Low"
+    climate_groups: [ Nutrition_and_Food_Security ]
+
+  "Iron Deficiency Anaemia":
+    category: "Nutrition"
+    severity: "Low"
+    climate_groups: [ Nutrition_and_Food_Security ]
+
+  "Anaemia (Other)":
+    category: "Nutrition"
+    severity: "Low"
+    climate_groups: [ Nutrition_and_Food_Security ]
+
+  "Malnutrition":
+    category: "Nutrition"
+    severity: "Medium"
+    climate_groups: [ Nutrition_and_Food_Security ]
+
+  # ------------------------------ Injury/External ----------------------------
+  "Fracture":
+    category: "Injury & External Causes"
+    severity: "Medium"
+    climate_groups: [ Extreme_Weather_Injury_and_Exposure ]
+
+  "Superficial Injury":
+    category: "Injury & External Causes"
+    severity: "Low"
+
+  "Contusion":
+    category: "Injury & External Causes"
+    severity: "Low"
+
+  "Crush Injury":
+    category: "Injury & External Causes"
+    severity: "High"
+
+  "Gunshot Wound":
+    category: "Injury & External Causes"
+    severity: "High"
+
+  "Blast Injury":
+    category: "Injury & External Causes"
+    severity: "High"
+
+  "Traumatic Amputation":
+    category: "Injury & External Causes"
+    severity: "High"
+
+  "Burn":
+    category: "Injury & External Causes"
+    severity: "High"
+    climate_groups: [ Extreme_Weather_Injury_and_Exposure ]
+
+  "Drowning":
+    category: "Injury & External Causes"
+    severity: "High"
+    climate_groups: [ Extreme_Weather_Injury_and_Exposure ]
+
+  "Snakebite/Envenomation":
+    category: "Injury & External Causes"
+    severity: "High"
+
+  "Insect Bite/Sting":
+    category: "Injury & External Causes"
+    severity: "Low"
+
+  "Heat Stroke":
+    category: "Injury & External Causes"
+    severity: "High"
+    climate_groups: [ Heat_and_Air_Quality_Sensitive, Extreme_Weather_Injury_and_Exposure ]
+
+  "Hypothermia":
+    category: "Injury & External Causes"
+    severity: "High"
+    climate_groups: [ Extreme_Weather_Injury_and_Exposure ]
+
+  "Acute Poisoning":
+    category: "Injury & External Causes"
+    severity: "High"
+
+  "Adverse Drug Effect":
+    category: "Injury & External Causes"
+    severity: "Medium"
+
+  "Drug Allergy":
+    category: "Injury & External Causes"
+    severity: "Low"
+
+  "Spinal Cord/Nerve Injury (Cervical)":
+    category: "Injury & External Causes"
+    severity: "High"
+
+  "Medical Treatment Complication":
+    category: "Injury & External Causes"
+    severity: "Medium"
+
+  "Sexual Violence":
+    category: "Injury & External Causes"
+    severity: "High"
+
+  "Dog Bite (Rabies Exposure)":
+    category: "Injury & External Causes"
+    severity: "Medium"
+
+  "Facial Nerve Injury":
+    category: "Injury & External Causes"
+
+  # -------------------------- General/Unspecified ----------------------------
+  "Dehydration":
+    category: "General Signs/Symptoms & Unspecified"
+    severity: "Low"
+    climate_groups: [ Heat_and_Air_Quality_Sensitive ]
+
+  "Fever of Unknown Origin":
+    category: "General Signs/Symptoms & Unspecified"
+    severity: "Low"
+
+  "Acute Febrile Illness (Unspecified)":
+    category: "General Signs/Symptoms & Unspecified"
+    severity: "Low"
+
+  "Foreign Body (Unspecified)":
+    category: "General Signs/Symptoms & Unspecified"
+    severity: "Low"
+
+  "Chemical/Biological Weapon (Suspected)":
+    category: "General Signs/Symptoms & Unspecified"
+    severity: "High"
+
+  "General/Unspecified":
+    category: "General Signs/Symptoms & Unspecified"
+
+  "General Weakness":
+    category: "General Signs/Symptoms & Unspecified"
+    severity: "Low"
+
+  "Ascites":
+    category: "General Signs/Symptoms & Unspecified"
+    severity: "Low"
+
+  "Food allergy":
+    category: "General Signs/Symptoms & Unspecified"
+    severity: "Low"
+
+  # --------------------------- Encounters/Services ---------------------------
+  "SRH Service":
+    category: "Encounters/Services"
+
+  "Referral":
+    category: "Encounters/Services"
+
+  "No Disease":
+    category: "Encounters/Services"
+
+  # ------------------------------ Administrative -----------------------------
+  "Death":
+    category: "Administrative Events"
+
+  "Disability":
+    category: "Administrative Events"
+
+synonyms:
+  # ─────────────────────────────────────────────────────────────────────────
+  # Respiratory infectious diseases (respiratory syndromes)
+  # ─────────────────────────────────────────────────────────────────────────
+  "uri": "Acute Upper Respiratory Infection"
+  "urti": "Acute Upper Respiratory Infection"
+  "acute upper respiratory tract infection": "Acute Upper Respiratory Infection"
+  "acute upper respiratory infection": "Acute Upper Respiratory Infection"
+  "catarrh": "Acute Upper Respiratory Infection"
+
+  "lrti": "Lower Respiratory Infection"
+  "lower respiratory tract infection": "Lower Respiratory Infection"
+
+  "ari": "Acute Upper Respiratory Infection" # generic ARI → map to URTI by default
+  "acute respiratory infection": "Acute Upper Respiratory Infection"
+
+  "pna": "Pneumonia"
+  "cap": "Pneumonia"
+  "pneumonia": "Pneumonia"
+  "community acquired pneumonia": "Pneumonia"
+  "pneumonia (unspecified)": "Pneumonia"
+
+  "ili": "Influenza-Like Illness"
+  "influenza like illness": "Influenza-Like Illness"
+  "flu-like illness": "Influenza-Like Illness"
+
+  "sari": "Severe Acute Respiratory Infection"
+  "severe acute respiratory illness": "Severe Acute Respiratory Infection"
+
+  "flu": "Influenza (Confirmed)"
+  "influenza": "Influenza (Confirmed)"
+  "h1n1": "Influenza (Confirmed)"
+
+  "covid": "COVID-19"
+  "covid19": "COVID-19"
+  "covid-19": "COVID-19"
+  "covid-19 suspected case": "COVID-19"
+  "coronavirus disease 2019": "COVID-19"
+  "sars-cov-2 infection": "COVID-19"
+
+  "tuberculosis": "Tuberculosis (Unspecified)"
+  "tb": "Tuberculosis (Pulmonary)"
+  "ptb": "Tuberculosis (Pulmonary)"
+  "pulmonary tuberculosis": "Tuberculosis (Pulmonary)"
+  "suspected tuberculosis": "Tuberculosis (Unspecified)"
+  "eptb": "Tuberculosis (Extrapulmonary)"
+  "extra-pulmonary tuberculosis": "Tuberculosis (Extrapulmonary)"
+
+  "strep throat": "Streptococcal Pharyngitis"
+  
+  "acute bronchitis": "Acute Upper Respiratory Infection"
+  "acute bronchitis bronchiolitis": "Acute Upper Respiratory Infection"
+  "bronchitis": "Acute Upper Respiratory Infection"
+  "chronic bronchitis": "Acute Upper Respiratory Infection"
+  
+  "acute tonsillitis": "Streptococcal Pharyngitis"
+  "tonsillitis": "Streptococcal Pharyngitis"
+
+  # Classic VPDs in respiratory grouping
+  "whooping cough": "Pertussis"
+  "suspected whooping cough": "Pertussis"
+  "rubeola": "Measles"
+  "suspected measles": "Measles"
+  "german measles": "Rubella"
+  "suspected rubella [german measles]": "Rubella"
+  "chickenpox": "Varicella (Chickenpox)"
+  "chicken pox": "Varicella (Chickenpox)"
+  "varicella": "Varicella (Chickenpox)"
+  "suspected varicella [chickenpox]": "Varicella (Chickenpox)"
+  "parotitis": "Mumps"
+  "epidemic parotitis": "Mumps"
+  "suspected diphtheria": "Diphtheria"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Enteric & food/water-borne infections
+  # ─────────────────────────────────────────────────────────────────────────
+  "acute watery diarrhea": "Acute Watery Diarrhoea (Suspected Cholera)"
+  "acute watery diarrhoea": "Acute Watery Diarrhoea (Suspected Cholera)"
+  "suspected cholera": "Acute Watery Diarrhoea (Suspected Cholera)"
+  "cholera (suspected)": "Acute Watery Diarrhoea (Suspected Cholera)"
+  "suspected cholera (acute watery diarrhea)": "Acute Watery Diarrhoea (Suspected Cholera)"
+  "suspected cholera  (acute watery diarrhea)": "Acute Watery Diarrhoea (Suspected Cholera)"
+  "awd": "Acute Watery Diarrhoea (Suspected Cholera)"
+
+  "cholera": "Cholera (Confirmed)"
+  "vibrio cholerae": "Cholera (Confirmed)"
+  "cholera (confirmed)": "Cholera (Confirmed)"
+
+  "acute bloody diarrhea": "Acute Bloody Diarrhoea (Suspected Shigellosis)"
+  "acute bloody diarrhoea": "Acute Bloody Diarrhoea (Suspected Shigellosis)"
+  "dysentery": "Acute Bloody Diarrhoea (Suspected Shigellosis)"
+  "abd": "Acute Bloody Diarrhoea (Suspected Shigellosis)"
+  "diarrhoea": "Diarrhoea (Other)"
+  "diarrhea": "Diarrhoea (Other)"
+  "acute diarrhea": "Diarrhoea (Other)"
+  "acute diarrhoea": "Diarrhoea (Other)"
+  "Diarrhea (Other)": "Diarrhoea (Other)"
+  "Acute Watery Diarrhea (Suspected Cholera)": "Acute Watery Diarrhoea (Suspected Cholera)"
+  "Acute Bloody Diarrhea (Suspected Shigellosis)": "Acute Bloody Diarrhoea (Suspected Shigellosis)"
+  "Foodborne Poisoning": "Foodborne Intoxication"
+
+  "shigellosis": "Shigellosis (Confirmed)"
+  "shigella": "Shigellosis (Confirmed)"
+  "shigella infection": "Shigellosis (Confirmed)"
+
+  "typhoid": "Typhoid Fever"
+  "enteric fever": "Typhoid Fever"
+  "salmonella typhi": "Typhoid Fever"
+  "typhoid and paratyphoid fevers": "Typhoid Fever"
+
+  "paratyphoid": "Paratyphoid Fever"
+  "salmonella paratyphi": "Paratyphoid Fever"
+
+  "amebiasis": "Amoebiasis"
+  "amoebic dysentery": "Amoebiasis"
+
+  "giardia": "Giardiasis"
+  "giardial infection": "Giardiasis"
+
+  "food poisoning": "Foodborne Intoxication"
+  "food-borne intoxication": "Foodborne Intoxication"
+  "foodborne illness": "Foodborne Intoxication"
+  "gastrointestinal infection": "Foodborne Intoxication"
+
+  "hep a": "Hepatitis A"
+  "hav": "Hepatitis A"
+  "hepatitis a (acute jaundice syndrome)": "Hepatitis A"
+  "acute hepatitis a": "Hepatitis A"
+  
+  "physiological jaundice": "Neonatal Jaundice"
+  "neonatal jaundice": "Neonatal Jaundice"
+  "acute junidice syndorme": "Hepatitis A"
+  "cholestatic jaundice syndrome": "Hepatitis A"
+
+  "hep b": "Hepatitis B"
+  "hbv": "Hepatitis B"
+
+  "hep c": "Hepatitis C"
+  "hcv": "Hepatitis C"
+
+  "hep e": "Hepatitis E"
+  "hev": "Hepatitis E"
+  
+  "other viral hepatitis": "Hepatitis (Other)"
+
+  "rota": "Rotavirus Gastroenteritis"
+  "rotavirus": "Rotavirus Gastroenteritis"
+  "gastroenteritis": "Rotavirus Gastroenteritis"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Vector-borne diseases
+  # ─────────────────────────────────────────────────────────────────────────
+  "malaria (suspected)": "Malaria (Suspected)"
+  "clinical malaria": "Malaria (Suspected)"
+  "suspected malaria": "Malaria (Suspected)"
+
+  "malaria": "Malaria (Confirmed)"
+  "rdt-positive malaria": "Malaria (Confirmed)"
+  "slide-positive malaria": "Malaria (Confirmed)"
+  "falciparum malaria": "Malaria (Confirmed)"
+  "vivax malaria": "Malaria (Confirmed)"
+  "pf malaria": "Malaria (Confirmed)"
+  "pv malaria": "Malaria (Confirmed)"
+
+  "dengue fever": "Dengue"
+  "df": "Dengue"
+  "dengue haemorrhagic fever": "Dengue"
+  "dengue hemorrhagic fever": "Dengue"
+
+  "chik": "Chikungunya"
+  "chikv": "Chikungunya"
+  "chikungunya virus infection": "Chikungunya"
+
+  "zika virus disease": "Zika"
+  "zikv": "Zika"
+
+  "yellow fever": "Yellow Fever"
+  "yf": "Yellow Fever"
+
+  "west nile fever": "West Nile Fever"
+  "wnv": "West Nile Fever"
+
+  "japanese encephalitis": "Japanese Encephalitis"
+  "je": "Japanese Encephalitis"
+
+  "rift valley fever": "Rift Valley Fever"
+  "rvf": "Rift Valley Fever"
+
+  "plague": "Plague"
+  "yersinia pestis": "Plague"
+  "bubonic plague": "Plague"
+  "pneumonic plague": "Plague"
+
+  "leishmaniasis": "Leishmaniasis (Unspecified)"
+  "cutaneous leishmaniasis": "Leishmaniasis (Cutaneous)"
+  "cl": "Leishmaniasis (Cutaneous)"
+  "kala-azar": "Leishmaniasis (Visceral)"
+  "visceral leishmaniasis": "Leishmaniasis (Visceral)"
+  "vl": "Leishmaniasis (Visceral)"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Viral haemorrhagic fevers (VHFs) - FIXED SPELLING
+  # ─────────────────────────────────────────────────────────────────────────
+  "ebola": "Ebola Virus Disease"
+  "ebov": "Ebola Virus Disease"
+
+  "marburg": "Marburg Virus Disease"
+  "marv": "Marburg Virus Disease"
+
+  "lassa": "Lassa Fever"
+  "lf": "Lassa Fever"
+
+  "cchf": "Crimean-Congo Haemorrhagic Fever"
+  "crimean congo hemorrhagic fever": "Crimean-Congo Haemorrhagic Fever"
+  "crimean-congo haemorrhagic fever": "Crimean-Congo Haemorrhagic Fever"
+
+  # FIXED: Map American spelling to British canonical
+  "viral hemorrhagic fevers (suspected)": "Viral Haemorrhagic Fevers (Suspected)"
+  "viral hemorrhagic fever (suspected)": "Viral Haemorrhagic Fevers (Suspected)"
+  "suspected haemorrhagic fever": "Viral Haemorrhagic Fevers (Suspected)"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # CNS infections
+  # ─────────────────────────────────────────────────────────────────────────
+  "suspected meningitis": "Meningitis (Suspected)"
+  "meningitis (suspected)": "Meningitis (Suspected)"
+
+  "encephalitis syndrome": "Encephalitis"
+  "acute encephalitis syndrome": "Encephalitis"
+  "aes": "Encephalitis"
+  "encephalitis, myelitis": "Encephalitis"
+
+  # AFP / Polio
+  "afp": "Acute Flaccid Paralysis"
+  "acute flaccid paresis": "Acute Flaccid Paralysis"
+  "polio": "Poliomyelitis (Confirmed)"
+  "poliomyelitis": "Poliomyelitis (Confirmed)"
+  "wild polio": "Poliomyelitis (Confirmed)"
+  "vdpv": "Poliomyelitis (Confirmed)"
+  "vaccine-derived poliovirus": "Poliomyelitis (Confirmed)"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Zoonoses (non-vector) & high-consequence
+  # ─────────────────────────────────────────────────────────────────────────
+  "rabies exposure": "Dog Bite (Rabies Exposure)"
+  "animal bite (suspected rabies)": "Dog Bite (Rabies Exposure)"
+  "dog bite": "Dog Bite (Rabies Exposure)"
+  "rabies": "Rabies"
+
+  "anthrax": "Anthrax"
+  "cutaneous anthrax": "Anthrax"
+  "inhalational anthrax": "Anthrax"
+
+  "brucella": "Brucellosis"
+  "brucellosis": "Brucellosis"
+
+  "leptospirosis": "Leptospirosis"
+  "weil's disease": "Leptospirosis"
+
+  "q fever": "Q Fever"
+  "coxiella burnetii": "Q Fever"
+
+  "monkeypox": "Mpox"
+  "mpox": "Mpox"
+  "mpxv": "Mpox"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # STIs & blood-borne infections (STBBI)
+  # ─────────────────────────────────────────────────────────────────────────
+  "syphilis": "Syphilis"
+  "treponema pallidum": "Syphilis"
+
+  "gonorrhea": "Gonorrhoea"
+  "gonorrhoea": "Gonorrhoea"
+  "neisseria gonorrhoeae": "Gonorrhoea"
+  "gc": "Gonorrhoea"
+
+  "chlamydia": "Chlamydia"
+  "chlamydia trachomatis": "Chlamydia"
+  "ct": "Chlamydia"
+
+  "trich": "Trichomoniasis"
+  "trichomonas": "Trichomoniasis"
+
+  "genital herpes": "Genital Herpes"
+  "hsv-2": "Genital Herpes"
+  "hsv2": "Genital Herpes"
+
+  "genital warts": "Anogenital Warts (HPV)"
+  "hpv warts": "Anogenital Warts (HPV)"
+  "condyloma": "Anogenital Warts (HPV)"
+
+  "hiv": "HIV Infection"
+  "aids": "HIV Infection"
+
+  "viral hepatitis (unspecified)": "Viral Hepatitis (Other)"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Parasitic & neglected tropical diseases (NTDs)
+  # ─────────────────────────────────────────────────────────────────────────
+  "leprosy": "Leprosy (Hansen Disease)"
+  "hansen disease": "Leprosy (Hansen Disease)"
+  "hansen's disease": "Leprosy (Hansen Disease)"
+
+  "trachoma": "Trachoma"
+  "active trachoma": "Trachoma"
+  "trachomatous trichiasis": "Trachoma"
+
+  "schistosomiasis": "Schistosomiasis"
+  "bilharzia": "Schistosomiasis"
+
+  "ascariasis": "Ascariasis"
+  "ascaris": "Ascariasis"
+
+  "trichuriasis": "Trichuriasis"
+  "trichuris": "Trichuriasis"
+
+  "hookworm": "Hookworm Disease"
+  "ancylostoma": "Hookworm Disease"
+  "necator": "Hookworm Disease"
+
+  "strongyloidiasis": "Strongyloidiasis"
+  "strongyloides": "Strongyloidiasis"
+
+  "cysticercosis": "Taeniasis/Cysticercosis"
+  "taenia": "Taeniasis/Cysticercosis"
+  "taenia solium": "Taeniasis/Cysticercosis"
+  "neurocysticercosis": "Taeniasis/Cysticercosis"
+
+  "echinococcosis": "Echinococcosis"
+  "hydatid disease": "Echinococcosis"
+
+  "onchocerciasis": "Onchocerciasis"
+  "river blindness": "Onchocerciasis"
+
+  "lymphatic filariasis": "Lymphatic Filariasis"
+  "filaria": "Lymphatic Filariasis"
+  "elephantiasis": "Lymphatic Filariasis"
+
+  "helminthiasis": "Helminthiasis (Unspecified)"
+  "worms": "Helminthiasis (Unspecified)"
+  "worms/ parasites": "Helminthiasis (Unspecified)"
+  "parasites": "Helminthiasis (Unspecified)"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Skin, eye & ENT
+  # ─────────────────────────────────────────────────────────────────────────
+  "tinea": "Dermatophytosis (Tinea)"
+  "ringworm": "Dermatophytosis (Tinea)"
+
+  "scabies": "Scabies"
+  "scabies/other acariasis": "Scabies"
+
+  "impetigo": "Impetigo"
+  
+  "dermatitis": "Dermatitis (Contact)"
+  "urticaria": "Urticaria"
+
+  "pink eye": "Conjunctivitis"
+  "conjunctivitis": "Conjunctivitis"
+  "conjunctivitis (acute)": "Conjunctivitis"
+
+  "otitis externa": "Otitis Externa"
+  "otitis external": "Otitis Externa"
+  "oe": "Otitis Externa"
+
+  "acute otitis media": "Acute Otitis Media"
+  "otitis media": "Acute Otitis Media"
+  "chronic otitis media": "Chronic Otitis Media"
+  "com": "Chronic Otitis Media"
+
+  "stye": "Blepharitis/Stye/Chalazion"
+  "hordeolum": "Blepharitis/Stye/Chalazion"
+  "chalazion": "Blepharitis/Stye/Chalazion"
+  "blepharitis stye chalazion": "Blepharitis/Stye/Chalazion"
+
+  "zoster": "Herpes Zoster (Shingles)"
+  "shingles": "Herpes Zoster (Shingles)"
+  "varicella zoster virus": "Herpes Zoster (Shingles)"
+  "herpes zoster": "Herpes Zoster (Shingles)"
+
+  "head lice": "Pediculosis"
+  "lice": "Pediculosis"
+  "pediculosis (lice)": "Pediculosis"
+
+  "fb ear": "Foreign Body (Ear)"
+  "foreign body in ear": "Foreign Body (Ear)"
+
+  "disorders of optic nerve": "Optic Nerve Disorder"
+  
+  "acute  chronic sinusitis": "Acute Sinusitis"
+  "acute mastoiditis": "Acute Mastoiditis"
+  "nasal polyp": "Nasal Polyps"
+  "eustachian salpingitis": "Eustachian Tube Dysfunction"
+  "perforation ear drum": "Tympanic Membrane Perforation"
+  "bleeding ear": "Otitis Externa"
+  
+  "eye infection inflammation other": "Conjunctivitis"
+  "refractive error": "Refractive Error"
+  "pterygium of eye": "Pterygium"
+  "strabismus": "Strabismus"
+  "lacrimal duct obstruction": "Lacrimal Duct Obstruction"
+  "retinal�vein or artery  occlusion": "Retinal Vascular Occlusion"
+  "total retinal detachment (suspect)": "Retinal Detachment"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Non-communicable diseases (non-MNS)
+  # ─────────────────────────────────────────────────────────────────────────
+  "asthma": "Asthma"
+  "copd": "Chronic Obstructive Pulmonary Disease"
+  "chronic obstructive pulmonary disease": "Chronic Obstructive Pulmonary Disease"
+  "chronic obstructive pulmonary disease (copd)": "Chronic Obstructive Pulmonary Disease"
+
+  "iihd": "Ischaemic Heart Disease"
+  "ihd": "Ischaemic Heart Disease"
+  "cad": "Ischaemic Heart Disease"
+  "chd": "Ischaemic Heart Disease"
+  "ischaemic heart disease": "Ischaemic Heart Disease"
+  "Chronic ischemic heart disease": "Ischaemic Heart Disease"
+
+  "ami": "Acute Myocardial Infarction"
+  "mi": "Acute Myocardial Infarction"
+  "stemi": "Acute Myocardial Infarction"
+  "nstemi": "Acute Myocardial Infarction"
+
+  "hf": "Heart Failure"
+  "chf": "Heart Failure"
+  "congestive heart failure": "Heart Failure"
+
+  "htn": "Hypertension"
+  "hypertension": "Hypertension"
+  "hypertensive disease": "Hypertension"
+
+  "dm": "Diabetes Mellitus"
+  "type 2 diabetes": "Diabetes Mellitus"
+  "type ii diabetes": "Diabetes Mellitus"
+
+  "ckd": "Chronic Kidney Disease"
+  "chronic renal disease": "Chronic Kidney Disease"
+  "chronic renal disease (ckd)": "Chronic Kidney Disease"
+  "chronic renal failure": "Chronic Kidney Disease"
+  "acute renal failure": "Acute Kidney Injury"
+
+  "cld": "Chronic Liver Disease"
+  "chronic hepatic disease": "Chronic Liver Disease"
+  "chronic hepatic failure": "Chronic Liver Disease"
+
+  "gerd": "Gastro-oesophageal Reflux Disease"
+  "gord": "Gastro-oesophageal Reflux Disease"
+  "acid reflux": "Gastro-oesophageal Reflux Disease"
+  "gastro-esophageal reflux disease": "Gastro-oesophageal Reflux Disease"
+
+  "pud": "Peptic Ulcer"
+  "peptic ulcer disease": "Peptic Ulcer"
+
+  "copd exacerbation": "Chronic Obstructive Pulmonary Disease"
+
+  "hyperthyroidism (overactive)": "Hyperthyroidism"
+  "overactive thyroid": "Hyperthyroidism"
+  "hyperthyroidism thyrotoxicosis": "Hyperthyroidism"
+  "hypothyroidism (underactive)": "Hypothyroidism"
+  "underactive thyroid": "Hypothyroidism"
+  "hypothyroidism myxoedema": "Hypothyroidism"
+
+  "osteopenia": "Osteoporosis" # map to closest program bucket
+
+  "dyslipidemia": "Dyslipidaemia"
+  "lipid disorder": "Dyslipidaemia"
+
+  "anaemia": "Anaemia (Other)"
+  "anemia": "Anaemia (Other)" # FIXED: American to British spelling
+  "iron defeciency anaemia": "Iron Deficiency Anaemia"
+  "vitamin b12 folate deficiency anaemia": "Vitamin B12/Folate Deficiency Anaemia"
+  "other anemias": "Anaemia (Other)"
+  "sickle-cell disorders   thalassemia": "Sickle Cell Disease/Thalassaemia"
+  
+  "arthritis": "Osteoarthritis (Multiple Joints)"
+  "polyosteoarthritis": "Osteoarthritis (Multiple Joints)"
+  
+  "peripheral vascular diseases": "Peripheral Vascular Disease"
+  
+  "overweight and obesity": "Obesity"
+  
+  "tumour  neoplasm": "Neoplasm (Unspecified)"
+
+  # ─────────────────────────────────────────────────────────
+  # MNS (mental, neurological & substance use)
+  # ─────────────────────────────────────────────────────────
+  "depression": "Major Depressive Disorder"
+  "mdd": "Major Depressive Disorder"
+  "depressive disorder": "Major Depressive Disorder"
+
+  "ptsd": "Post-Traumatic Stress Disorder"
+  "post traumatic stress disorder": "Post-Traumatic Stress Disorder"
+  "post-traumatic stress disorder (ptsd)": "Post-Traumatic Stress Disorder"
+
+  "adhd": "Attention-Deficit/Hyperactivity Disorder"
+  "attention deficit hyperactivity disorder (adhd)": "Attention-Deficit/Hyperactivity Disorder"
+
+  "alcohol use disorder": "Alcohol Use Disorder"
+  "alcohol dependence": "Alcohol Use Disorder"
+  "alcohol abuse": "Alcohol Use Disorder"
+
+  "epilepsy": "Epilepsy"
+  "seizure disorder": "Epilepsy"
+  "epilepsy and recurrent seizures": "Epilepsy"
+
+  "cva": "Stroke"
+  "stroke": "Stroke"
+  "hemeplegia": "Stroke"
+
+  "headache (tension)": "Tension Headache"
+  "tension-type headache": "Tension Headache"
+  "cluster headache": "Cluster Headache"
+  "migraine headache": "Migraine"
+  
+  "parkinsonism": "Parkinson's Disease"
+  "facial paralysis bell palsy": "Bell's Palsy"
+  "injury of facial nerve": "Bell's Palsy"
+  
+  "anorexia nervosa": "Eating Disorder"
+  "dissociative and conversion disorders": "Conversion Disorder"
+  "social and behaviour related problems": "Behavioural Disorder"
+  "problems related to lifestyle": "Behavioural Disorder"
+
+  "dementia": "Dementia"
+
+  # ─────────────────────────────────────────────────────────
+  # Maternal, newborn & reproductive health
+  # ─────────────────────────────────────────────────────────
+  "uti": "Urinary Tract Infection"
+  "urinary infection": "Urinary Tract Infection"
+  "cystitis": "Urinary Tract Infection"
+
+  "vaginal infection": "Vaginitis/Vulvitis"
+  "bacterial vaginosis": "Vaginitis/Vulvitis"
+  "candida": "Vaginitis/Vulvitis"
+  "vulvovaginitis": "Vaginitis/Vulvitis"
+
+  "gdm": "Gestational Diabetes Mellitus"
+  "gestational diabetes": "Gestational Diabetes Mellitus"
+
+  "pih": "Preeclampsia"
+  "pregnancy-induced hypertension": "Preeclampsia"
+  "pre-eclampsia": "Preeclampsia"
+
+  "postpartum complications": "Postpartum Complication"
+  "puerperal complications": "Postpartum Complication"
+
+  "menopause disorders": "Menopausal Disorders"
+  "menopausal symptoms": "Menopausal Disorders"
+
+  # ─────────────────────────────────────────────────────────
+  # Nutrition
+  # ─────────────────────────────────────────────────────────
+  "sam": "Severe Acute Malnutrition (Unspecified)"
+  "severe acute malnutrition": "Severe Acute Malnutrition (Unspecified)"
+  "sam (complicated)": "Severe Acute Malnutrition (Complicated)"
+  "complicated severe acute malnutrition": "Severe Acute Malnutrition (Complicated)"
+  "sam (uncomplicated)": "Severe Acute Malnutrition (Uncomplicated)"
+  "uncomplicated severe acute malnutrition": "Severe Acute Malnutrition (Uncomplicated)"
+  "mam": "Moderate Acute Malnutrition"
+  "moderate acute malnutrition": "Moderate Acute Malnutrition"
+  "gam": "Malnutrition"
+  "global acute malnutrition": "Malnutrition"
+  "under nutrition": "Malnutrition"
+  "underweight": "Underweight"
+  "stunting": "Growth Delay"
+  "micronutrient deficiency": "Vitamin Deficiency"
+  "vitamin deficiency": "Vitamin Deficiency"
+  "iron deficiency anemia": "Iron Deficiency Anaemia"
+  "iron deficiency anaemia": "Iron Deficiency Anaemia"
+  "vitamin b12 deficiency anaemia": "Vitamin B12/Folate Deficiency Anaemia"
+  "folate deficiency anaemia": "Vitamin B12/Folate Deficiency Anaemia"
+
+  # ─────────────────────────────────────────────────────────
+  # Injury & external causes
+  # ─────────────────────────────────────────────────────────
+  "gsw": "Gunshot Wound"
+  "gun shot wound": "Gunshot Wound"
+  "firearm injury": "Gunshot Wound"
+
+  "blast": "Blast Injury"
+  "blast trauma": "Blast Injury"
+  "blast injuries": "Blast Injury"
+
+  "crush": "Crush Injury"
+  "crush trauma": "Crush Injury"
+
+  "superficial wound": "Superficial Injury"
+  "superficial injury": "Superficial Injury"
+  "laceration": "Superficial Injury"
+
+  "fracture (bone)": "Fracture"
+  "fracture": "Fracture"
+  "fractures and trauma": "Fracture"
+
+  "amputation": "Traumatic Amputation"
+
+  "snakebite": "Snakebite/Envenomation"
+  "snake bite": "Snakebite/Envenomation"
+  "envenomation": "Snakebite/Envenomation"
+
+  "burns": "Burn"
+  "burn injury": "Burn"
+  "burn": "Burn"
+
+  "drowning": "Drowning"
+
+  "acute poisoning": "Acute Poisoning"
+  "poisoning": "Acute Poisoning"
+
+  "heatstroke": "Heat Stroke"
+  "heat stroke": "Heat Stroke"
+
+  "hypothermia": "Hypothermia"
+
+  "foreign body": "Foreign Body (Unspecified)"
+  "fb": "Foreign Body (Unspecified)"
+
+  "contusions": "Contusion"
+  
+  "other injuries": "Injury (Other)"
+  "conflict-related injuries": "War-Related Injury"
+  "insect bite sting": "Insect Bite/Sting"
+  "homicidal and suicidal ideations": "Suicidal Ideation"
+
+  # ─────────────────────────────────────────────────────────
+  # General signs/symptoms & unspecified
+  # ─────────────────────────────────────────────────────────
+  "fuo": "Fever of Unknown Origin"
+  "fever of unknown origin": "Fever of Unknown Origin"
+
+  "dehydration": "Dehydration"
+  
+  "no disease": "No Disease/Normal"
+  
+  "chronic enteritis ulcerative colitis": "Inflammatory Bowel Disease"
+  "cholecystitis cholelithiasis": "Cholecystitis/Cholelithiasis"
+  "esophagitis": "Oesophagitis"
+  
+  "inguinal hernia": "Inguinal Hernia"
+  "muscle spasm": "Muscle Spasm"
+  "deformities of limbs": "Congenital Limb Deformity"
+  
+  "vertiginous syndrome": "Vertigo"
+  
+  "bedwetting enuresis": "Enuresis"
+  "disorders of urethra": "Urethral Disorder"
+  "infertility subfertility": "Infertility"
+  "undescended testicle": "Cryptorchidism"
+  "uterovaginal prolapse": "Pelvic Organ Prolapse"
+  "inflammatory disease of uterus": "Endometritis"
+  "vaginitis vulvitis": "Vulvovaginitis"
+  "pelvic inflammatory disease": "Pelvic Inflammatory Disease"
+  "menopausal and other perimenopausal disorders": "Menopause"
+  
+  "adverse effect medical agent": "Adverse Drug Reaction"
+  "complication of medical treatment": "Medical Complication"
+  "drugs allergy status": "Drug Allergy"
+  "food allergy status": "Food Allergy"
+  
+  "cbw (suspected)": "Chemical/Biological Weapon (Suspected)"
+
+  "chemical weapon exposure": "Chemical/Biological Weapon (Suspected)"
+  "biological weapon exposure": "Chemical/Biological Weapon (Suspected)"
+  
+  # General "Other diseases" categories
+  "other diseases - dermatology": "Skin Disorder (Other)"
+  "other diseases - urological and nephrology diseases": "Urological/Renal Disorder (Other)"
+  "other diseases - respiratory diseases": "Respiratory Disorder (Other)"
+  "other diseases - digestive diseases": "Digestive Disorder (Other)"
+  "other disease - general and unspecified": "Medical Condition (Other)"
+  "other diseases - neurological diseases": "Neurological Disorder (Other)"
+  "other diseases - cardiovascular diseases": "Cardiovascular Disorder (Other)"
+  "other diseases - musculoskeletal diseases": "Musculoskeletal Disorder (Other)"
+  "other diseases - infectious diseases": "Infectious Disease (Other)"
+  "other diseases - ent diseases": "ENT Disorder (Other)"
+  "other diseases - blood and immune mechanism": "Haematological/Immunological Disorder (Other)"
+  "other diseases - female and male genital": "Genitourinary Disorder (Other)"
+  "other diseases - ophthalmology diseases": "Ophthalmological Disorder (Other)"
+  "other diseases - endocrine metabolic and nutritional": "Endocrine/Metabolic Disorder (Other)"
+  "other diseases - mental health diseases": "Mental Health Disorder (Other)"
+
+# ─────────────────────────────────────────────────────────
+# Rollups and other groupings
+# ───────────────────────────────────────────────────────── 
+rollups:
+  VPD:
+    includes_canonicals:
+    - Measles
+    - Rubella
+    - Mumps
+    - Diphtheria
+    - Pertussis
+    - Tetanus
+    - Neonatal Tetanus
+    - Acute Flaccid Paralysis
+    - Poliomyelitis (Confirmed)
+    - Hepatitis A
+    - Hepatitis B
+    - Hepatitis E
+    - Haemophilus influenzae type b Disease
+    - Pneumococcal Disease
+    - Meningococcal Disease
+    - Rotavirus Gastroenteritis
+    - Varicella (Chickenpox)
+    - Yellow Fever
+    - Japanese Encephalitis
+
+tags:
+  attributes:
+  - VPD
+  - Outbreak-prone
+  - Climate-sensitive
+  - AMR-relevant
+
+roles:
+  "SRH Service": "Service"
+  "Referral": "Service"
+  "No Disease": "Service"
+  "Normal Vaginal Delivery": "Encounter"
+  "Caesarean Section": "Encounter"
+  "Obstetric Complication": "Encounter"
+  "Death": "Admin"
+  "Disability": "Admin"
+
+epidemic_groups:
+  Vaccine_Preventable:
+  - Measles
+  - Rubella
+  - Mumps
+  - Diphtheria
+  - Pertussis
+  - Tetanus
+  - Neonatal Tetanus
+  - Acute Flaccid Paralysis
+  - Poliomyelitis (Confirmed)
+  - Hepatitis A
+  - Hepatitis B
+  - Hepatitis E
+  - Haemophilus influenzae type b Disease
+  - Pneumococcal Disease
+  - Meningococcal Disease
+  - Rotavirus Gastroenteritis
+  - Varicella (Chickenpox)
+  - Yellow Fever
+  - Japanese Encephalitis
+  Water_Food_Borne:
+  - Acute Watery Diarrhoea (Suspected Cholera)
+  - Cholera (Confirmed)
+  - Acute Bloody Diarrhoea (Suspected Shigellosis)
+  - Shigellosis (Confirmed)
+  - Typhoid Fever
+  - Paratyphoid Fever
+  - Hepatitis A
+  - Hepatitis E
+  - Rotavirus Gastroenteritis
+  Respiratory_Epidemic:
+  - Influenza-Like Illness
+  - Severe Acute Respiratory Infection
+  - Pneumonia
+  - COVID-19
+  - Tuberculosis (Pulmonary)
+  - Tuberculosis (Unspecified)
+  - Acute Upper Respiratory Infection
+  - Lower Respiratory Infection
+  Vector_Borne:
+  - Malaria (Suspected)
+  - Malaria (Confirmed)
+  - Dengue
+  - Chikungunya
+  - Zika
+  - Yellow Fever
+  - West Nile Fever
+  - Rift Valley Fever
+  - Japanese Encephalitis
+  - Plague
+  - Leishmaniasis (Cutaneous)
+  - Leishmaniasis (Visceral)
+  Viral_Hemorrhagic_Fever:
+  - Ebola Virus Disease
+  - Marburg Virus Disease
+  - Lassa Fever
+  - Crimean-Congo Haemorrhagic Fever
+
+syndromic_groups:
+  Diarrheal Diseases:
+  - Acute Watery Diarrhoea (Suspected Cholera)
+  - Cholera (Confirmed)
+  - Acute Bloody Diarrhoea (Suspected Shigellosis)
+  - Shigellosis (Confirmed)
+  - Diarrhoea (Other)
+  - Amoebiasis
+  - Foodborne Intoxication
+  - Typhoid Fever
+  - Paratyphoid Fever
+  Respiratory Syndromes:
+  - Influenza-Like Illness
+  - Severe Acute Respiratory Infection
+  - Pneumonia
+  - Acute Upper Respiratory Infection
+  - Lower Respiratory Infection
+  - Diphtheria
+  - Pertussis
+  Fever Syndromes:
+  - Fever of Unknown Origin
+  - Malaria (Suspected)
+  - Malaria (Confirmed)
+  - Typhoid Fever
+  - Brucellosis
+  - Leishmaniasis (Cutaneous)
+  Rash Illnesses:
+  - Measles
+  - Rubella
+  - Varicella (Chickenpox)
+  - Mumps
+  Neurological Syndromes:
+  - Meningitis (Suspected)
+  - Encephalitis
+  - Acute Flaccid Paralysis
+  Jaundice Syndrome:
+  - Hepatitis A
+  - Hepatitis B
+  - Hepatitis C
+  - Hepatitis E
+
+age_risks:
+  Under_5:
+  - Pneumonia
+  - Acute Upper Respiratory Infection
+  - Acute Watery Diarrhoea (Suspected Cholera)
+  - Acute Bloody Diarrhoea (Suspected Shigellosis)
+  - Measles
+  - Varicella (Chickenpox)
+  - Mumps
+  - Rubella
+  - Acute Flaccid Paralysis
+  - Meningitis (Suspected)
+  - Encephalitis
+  - Severe Acute Malnutrition (Unspecified)
+  - Moderate Acute Malnutrition
+  - Vitamin Deficiency
+  - Growth Delay
+  - Neonatal Tetanus
+  - Physiological Jaundice (Neonatal)
+  - Congenital Anomaly
+  - Neonatal Complication
+  School_Age:
+  - Acute Upper Respiratory Infection
+  - Scabies
+  - Dermatophytosis (Tinea)
+  - Impetigo
+  - Conjunctivitis
+  - Acute Sinusitis
+  - Acute Otitis Media
+  - Typhoid Fever
+  - Foodborne Intoxication
+  - Fracture
+  - Burn
+  - Superficial Injury
+  - Anaemia (Other)
+  - Refractive Error
+  Adults:
+  - Hypertension
+  - Diabetes Mellitus
+  - Chronic Obstructive Pulmonary Disease
+  - Ischaemic Heart Disease
+  - Stroke
+  - Chronic Kidney Disease
+  - Chronic Liver Disease
+  - Asthma
+  - Neoplasm (Unspecified)
+  - Major Depressive Disorder
+  - Bipolar Disorder
+  - Schizophrenia
+  - Tuberculosis (Pulmonary)
+  - Brucellosis
+  Elderly:
+  - Hypertension
+  - Diabetes Mellitus
+  - Heart Failure
+  - Stroke
+  - Peripheral Vascular Disease
+  - Neoplasm (Unspecified)
+  - Dementia
+  - Chronic Pain
+  - Osteoporosis
+  - Arthritis
+  Pregnant:
+  - Obstetric Complication
+  - Gestational Diabetes Mellitus
+  - Preeclampsia
+  - Anaemia (Other)
+  - Urinary Tract Infection
+  - Postpartum Complication
+  - Vaginitis/Vulvitis
+  - Hypertension
+
+seasonal_patterns:
+  Winter:
+  - Influenza-Like Illness
+  - Severe Acute Respiratory Infection
+  - Pneumonia
+  - Acute Upper Respiratory Infection
+  - Asthma
+  - Chronic Obstructive Pulmonary Disease
+  - Heart Failure
+  - Hypertension
+  - Hypothermia
+  Spring:
+  - Measles
+  - Rubella
+  - Varicella (Chickenpox)
+  - Tuberculosis (Pulmonary)
+  - Brucellosis
+  - Acute Upper Respiratory Infection
+  - Asthma
+  Summer:
+  - Acute Watery Diarrhoea (Suspected Cholera)
+  - Acute Bloody Diarrhoea (Suspected Shigellosis)
+  - Diarrhoea (Other)
+  - Foodborne Intoxication
+  - Typhoid Fever
+  - Amoebiasis
+  - Helminthiasis (Unspecified)
+  - Dehydration
+  - Heat Stroke
+  - Conjunctivitis
+  - Malaria (Suspected)
+  - Leptospirosis
+  Autumn:
+  - Influenza-Like Illness
+  - Severe Acute Respiratory Infection
+  - Pneumonia
+  - Acute Upper Respiratory Infection
+  - Foodborne Intoxication
+  - Measles
+  - Rubella
+  - Mumps
+  - Chronic Obstructive Pulmonary Disease
+
+severity_map:
+  High:
+  - Death
+  - Acute Myocardial Infarction
+  - Stroke
+  - Meningitis (Suspected)
+  - Acute Flaccid Paralysis
+  - Acute Watery Diarrhoea (Suspected Cholera)
+  - Neonatal Tetanus
+  - Severe Acute Malnutrition (Complicated)
+  - Severe Acute Malnutrition (Unspecified)
+  - Severe Acute Respiratory Infection
+  - Rabies
+  Medium:
+  - Pneumonia
+  - Acute Bloody Diarrhoea (Suspected Shigellosis)
+  - Tuberculosis (Pulmonary)
+  - Hepatitis A
+  - Hepatitis B
+  - Hepatitis C
+  - Hepatitis E
+  - Measles
+  - Rubella
+  - Varicella (Chickenpox)
+  - Pertussis
+  - Diphtheria
+  - Brucellosis
+  - Malaria (Confirmed)
+  - Asthma
+  - Chronic Obstructive Pulmonary Disease
+  - Influenza-Like Illness
+  - Diabetes Mellitus
+  - Hypertension
+  - Moderate Acute Malnutrition
+  - Encephalitis
+  - Heart Failure
+  Low:
+  - Migraine
+  - Acute Upper Respiratory Infection
+  - Acute Sinusitis
+  - Dermatitis (Seborrhoeic)
+  - Dermatophytosis (Tinea)
+  - Impetigo
+  - Scabies
+  - Conjunctivitis
+  - Diarrhoea (Other)
+  - Foodborne Intoxication
+  - Helminthiasis (Unspecified)
+  - Anaemia (Other)
+  - Vitamin Deficiency
+  - Muscle Spasm
+
+malnutrition_labels:
+- Severe Acute Malnutrition (Complicated)
+- Moderate Acute Malnutrition
+- Severe Acute Malnutrition (Unspecified)
+- Severe Acute Malnutrition (Uncomplicated)
+- Underweight
+- Malnutrition
+
+trauma_morbidities:
+- Fracture
+- Superficial Injury
+- Contusion
+- Burn
+- Gunshot Wound
+- Blast Injury
+- Crush Injury
+- Traumatic Amputation
+- Facial Nerve Injury
+- Spinal Cord/Nerve Injury (Cervical)
+- Injury (Other)
+
+alert_thresholds:
+  "Malaria (Confirmed)": { low: 1, medium: 10, high: 25 }
+  "Dengue": { low: 1, medium: 5, high: 10 }
+  "Cholera (Confirmed)": { low: 1, medium: 2, high: 5 }
+  "Shigellosis (Confirmed)": { low: 1, medium: 2, high: 5 }
+  "Influenza-Like Illness": { low: 5, medium: 20, high: 50 }
+  "Severe Acute Respiratory Infection": { low: 1, medium: 2, high: 5 }
+  "Measles": { low: 1, medium: 3, high: 3 }
+  "Meningitis (Suspected)": { low: 1, medium: 1, high: 3 }
+  "Acute Watery Diarrhoea (Suspected Cholera)": { low: 1, medium: 5, high: 10 }
+  "Acute Bloody Diarrhoea (Suspected Shigellosis)": { low: 1, medium: 3, high: 5 }
+  "Tuberculosis (Pulmonary)": { low: 1, medium: 3, high: 5 }
+  "COVID-19": { low: 1, medium: 5, high: 10 }
+
+# =============================================================================
+# Climate + Equity analysis
+# =============================================================================
+climate_sensitive_groups:
+  Vector-borne:
+  - Malaria (Confirmed)
+  - Malaria (Suspected)
+  - Dengue
+  - Zika
+  - Chikungunya
+  - Yellow Fever
+  - Rift Valley Fever
+  - West Nile Fever
+  - Japanese Encephalitis
+  - Leishmaniasis (Cutaneous)
+  - Leishmaniasis (Visceral)
+  Water_and_Food_borne:
+  - Acute Watery Diarrhoea (Suspected Cholera)
+  - Cholera (Confirmed)
+  - Acute Bloody Diarrhoea (Suspected Shigellosis)
+  - Shigellosis (Confirmed)
+  - Typhoid Fever
+  - Paratyphoid Fever
+  - Amoebiasis
+  - Giardiasis
+  - Hepatitis A
+  - Hepatitis E
+  Heat_and_Air_Quality_Sensitive:
+  - Heat Stroke
+  - Dehydration
+  - Asthma
+  - Chronic Obstructive Pulmonary Disease
+  - Ischaemic Heart Disease
+  - Heart Failure
+  - Stroke
+  - Pneumonia
+  - Influenza-Like Illness
+  Extreme_Weather_Injury_and_Exposure:
+  - Drowning
+  - Fracture
+  - Burn
+  - Hypothermia
+  - Acute Poisoning
+  - Injury (Other)
+  Nutrition_and_Food_Security:
+  - Malnutrition
+  - Moderate Acute Malnutrition
+  - Severe Acute Malnutrition (Unspecified)
+  - Severe Acute Malnutrition (Complicated)
+  - Underweight
+  Mental_Health_Disaster_related:
+  - Major Depressive Disorder
+  - Anxiety Disorder
+  - Post-Traumatic Stress Disorder
+  Maternal_and_Neonatal_Sensitivity:
+  - Gestational Diabetes Mellitus
+  - Preeclampsia
+  - Hypertension
+  - Urinary Tract Infection
+
+climate_exposures:
+  Heatwave: { unit: "days>threshold", examples: [ "TX90p", "WBGT>28" ] }
+  Cold_Spell: { unit: "days<percentile", examples: [ "TN10p" ] }
+  Flood: { unit: "event", examples: [ "riverine", "flash" ] }
+  Drought: { unit: "months", examples: [ "SPEI<-1" ] }
+  Wildfire_Smoke: { unit: "days", examples: [ "PM2.5_from_fire" ] }
+  Dust_Storm: { unit: "event", examples: [ "PM10_spike" ] }
+  Cyclone_Storm: { unit: "event", examples: [ "tropical", "extratropical" ] }
+  Air_Pollution: { unit: "µg/m3", examples: [ "PM2.5", "O3", "NO2" ] }
+  Rainfall_Anomaly: { unit: "mm/period", examples: [ ">95p", "<5p" ] }
+  Temperature_Anomaly: { unit: "°C", examples: [ "Tmean anomaly" ] }
+  Humidity: { unit: "%", examples: [ "RH>80" ] }
+
+exposure_to_group_links:
+  Heatwave: [ Heat_and_Air_Quality_Sensitive, Maternal_and_Neonatal_Sensitivity ]
+  Cold_Spell: [ Extreme_Weather_Injury_and_Exposure ]
+  Flood: [ Water_and_Food_borne, Extreme_Weather_Injury_and_Exposure, Mental_Health_Disaster_related ]
+  Drought: [ Nutrition_and_Food_Security, Water_and_Food_borne, Mental_Health_Disaster_related ]
+  Wildfire_Smoke: [ Heat_and_Air_Quality_Sensitive ]
+  Dust_Storm: [ Heat_and_Air_Quality_Sensitive ]
+  Cyclone_Storm: [ Extreme_Weather_Injury_and_Exposure, Water_and_Food_borne, Mental_Health_Disaster_related ]
+  Air_Pollution: [ Heat_and_Air_Quality_Sensitive ]
+  Temperature_Anomaly: [ Vector-borne, Heat_and_Air_Quality_Sensitive ]
+  Rainfall_Anomaly: [ Vector-borne, Water_and_Food_borne ]
+  Humidity: [ Vector-borne ]
+
+vulnerability_facets:
+  wealth_quintile: [ "Q1 (poorest)", "Q2", "Q3", "Q4", "Q5 (wealthiest)" ]
+  poverty_status: [ "Below poverty line", "Above poverty line" ]
+  WASH_access: [ "Safely managed", "Basic", "Limited", "Unimproved", "Surface water" ]
+  housing_quality: [ "Permanent", "Semi-permanent", "Temporary" ]
+  livelihood: [ "Agriculture", "Pastoral", "Fishing", "Service", "Unemployed", "Other" ]
+  displacement_status: [ "Resident", "IDP", "Refugee", "Returnee", "Migrant" ]
+  urban_rural: [ "Urban", "Rural", "Camp/Settlement" ]
+  occupation_outdoor: [ "Outdoor", "Indoor", "Mixed" ]
+  age_group: [ "Under_5", "5_17", "18_59", "60+" ]
+  pregnancy_status: [ "Pregnant", "Not pregnant", "Unknown" ]
+
+climate_analysis_helpers:
+  recommended_denominators: [ "population", "OPD_visits", "admissions" ]
+  default_lag_weeks: 0
+  attribution_fields:
+    exposure: "climate_exposure"
+    group: "climate_group"
+    vulnerability: "wealth_quintile"

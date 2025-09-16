@@ -1,0 +1,84 @@
+country:
+  name: Syria
+  code: SY
+  context: humanitarian
+  organization: International Medical Corps
+data_source:
+  type: dhis2
+  dhis2:
+    base_url: https://dhis.medmis.org/api/
+    program: Dx6ahQYI5h0
+    stage: CqrONYSlEaX
+    endpoint: analytics/events/query/Dx6ahQYI5h0.json
+    timeout: 300
+data_mapping:
+  date_column: datevisit
+  disease_column: morbidity
+  facility_column: health_facility
+  geographic:
+    admin0: country
+    admin1: admin1
+    admin2: admin2
+    admin3: admin3
+  demographics:
+    age_column: age_value
+    age_group_column: age_group
+    sex_column: sex_value
+  stratification:
+    resident_status: resident
+    disability: disability
+    nutrition_status: ~
+    socioeconomic: ~
+age_groups:
+  type: humanitarian_standard
+  custom_groups:
+  - name: Under 1
+    min_age: 0
+    max_age: 0.99
+  - name: 1-4 years
+    min_age: 1
+    max_age: 4
+  - name: 5-14 years
+    min_age: 5
+    max_age: 14
+  - name: 15-49 years
+    min_age: 15
+    max_age: 49
+  - name: 50+ years
+    min_age: 50
+    max_age: 999
+taxonomy:
+  base_system: icd11
+  base_file: icd11/disease_mappings.yml
+  country_file: syria_icd11.yml
+  icd11_enabled: yes
+  priority_diseases:
+  - Acute watery diarrhea
+  - Upper respiratory tract infections
+  - Lower respiratory tract infections
+  - Measles
+  - Cholera
+  icd11_settings:
+    use_api: yes
+    cache_enabled: yes
+    fallback_to_manual: yes
+    require_confidence: medium
+    flag_unmapped_diseases: yes
+geography:
+  coordinate_system: WGS84
+  shapefile_path: data/shapefiles/syria/
+  admin_levels:
+  - admin0
+  - admin1
+  - admin2
+reporting:
+  default_period: monthly
+  fiscal_year_start: 1
+  languages:
+  - en
+  - ar
+  time_zone: Asia/Damascus
+ai_customization:
+  context_file: ai_customization.yml
+  deployment_type: humanitarian
+  population_description: Conflict-affected populations, IDPs, returnees

@@ -1,152 +1,108 @@
-markdown# **Epi Dashboard Test with DHIS2**
+## 🚩 Badges
+<!-- Badges: update the URLs as needed -->
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)
+![R Version](https://img.shields.io/badge/R-%3E%3D4.0.0-blue.svg)
+![Shiny](https://img.shields.io/badge/shiny-dashboard-orange.svg)
 
-A comprehensive health surveillance dashboard and reporting system for analyzing consultation data from health facilities using DHIS2 data.
+<div align="center">
+  <img src="app/www/epione_logo.png" alt="EpiOne Logo" width="320">
+</div>
 
-## **Features**
+# EpiOne — Epidemiological Dashboard & Reporting  
+*Unified health surveillance, reporting, and epidemiological insights.*
 
-- **Interactive Shiny Dashboard** (`app/`) - Real-time visualization and exploration of health facility data
-- **Automated R Markdown Reports** (`reports/`) - Professional epidemiological reports with key insights
-- **Flexible Data Loading** - Support for both live DHIS2 API data and cached local files
-- **Secure Configuration** - Centralized configuration management with environment-specific settings
-- **Comprehensive Analysis** - Disease surveillance, geographic analysis, demographic patterns, and outbreak detection
+> 🚧 Work in progress (WIP): Minimum Viable Product demo with iterative updates implemented. Interfaces and APIs may change.
 
-## **Project Structure**
-epidashboard/
-├── config/
-│   └── config.yml              # Configuration settings
-├── R/
-│   ├── data_loader.R           # Data loading and caching functions
-│   ├── utils_dhis2_api.R       # DHIS2 API utilities
-│   ├── preprocessing.R         # Data cleaning and transformation
-│   └── visualization_helpers.R # Plotting and summary functions
-├── app/
-│   └── app.R                   # Shiny application
-├── reports/
-│   └── epi_report.Rmd         # R Markdown report template
-├── data/
-│   ├── raw/                   # Cached API responses
-│   ├── processed/             # Cleaned datasets
-│   └── metadata/              # Organizational metadata
-└── output/
-├── reports/               # Generated reports
-└── plots/                 # Saved visualizations
+EpiOne enables humanitarian and public health programs to monitor disease trends, generate epidemiological reports, and explore health data through an interactive dashboard — all from a single, modular codebase. Originally developed for International Medical Corps (IMC) health facilities, it supports DHIS2 line lists, DHIS2 aggregate data, or Excel aggregate data. The code is based on the R programming language and the project was created using R Studio Version 2025.05.1+513 and Visual Studio Code Version 1.96.4 (Universal).
 
-## **Prerequisites**
+Our vision is for EpiOne to be easily configurable across different settings, countries, and levels of health system maturity. Currently, it works best with line list data; aggregate data can be loaded with some code tweaks. Work is ongoing to make aggregate data handling more automated, and at present some manual adjustments are still required.
 
-### Required Software
-1. **R** (>= 4.0.0) - [Download R](https://cran.r-project.org/)
-2. **RStudio** (recommended) - [Download RStudio](https://www.rstudio.com/products/rstudio/download/)
-3. **Pandoc** (>= 1.12.3) - Required for R Markdown reports
+## ✨ Key Features
+- **Shiny App Interactive Dashboard:** Explore consultations by time, place, and disease with fast filters.
+- **R Markdown Automated Reports:** Generate comprehensive epidemiological HTML reports with QA and ICD‑11 context.
+- **Taxonomy Support:** Custom IMC and WHO-aligned disease taxonomies for consistent classification.
+- **AI Integration:** Optional AI summaries and EpiBot chatbot for enhanced insights.
 
-### Installing Pandoc
+## 📸 Visual Examples
+Below are example screenshots and demos of EpiOne in action: (Coming soon)
 
-**Option 1: Install/Update RStudio (Recommended)**
-- RStudio includes Pandoc automatically
-- Download latest version from [RStudio website](https://www.rstudio.com/products/rstudio/download/)
+**Dashboard Demo**
+![Dashboard Screenshot](docs/images/dashboard_demo.png)
 
-**Option 2: Install Pandoc Separately**
+**Automated Report Demo**
+![Report Demo](docs/images/report_demo.gif)
 
-*macOS:*
-```bash
-brew install pandoc
-Windows:
-bashchoco install pandoc
-Linux:
-bashsudo apt-get install pandoc  # Ubuntu/Debian
-sudo yum install pandoc      # CentOS/RHEL
-Verify Installation:
-r# In R console
-rmarkdown::pandoc_available()  # Should return TRUE
-rmarkdown::pandoc_version()    # Should be >= 1.12.3
-Required R Packages
-r# Install required packages
-install.packages(c(
-  "shiny", "shinydashboard", "DT", "plotly",
-  "config", "httr", "jsonlite", "logger",
-  "dplyr", "tidyr", "ggplot2", "scales",
-  "readxl", "lubridate", "zoo",
-  "gtsummary", "flextable", "viridis",
-  "RColorBrewer", "treemapify", "here"
-))
-Setup Instructions
-1. Clone Repository
-bashgit clone <repository-url>
-cd epidashboard
-2. Configure Settings
-Edit config/config.yml:
-yamldefault:
-  dhis2:
-    base_url: "https://your-dhis2-instance.org/api/"
-    username: "your_username"
-    password: "your_password"  # Consider using environment variables
-  
-  cache:
-    use_cache: true           # Set to false for always-fresh data
-    cache_expiry_hours: 24    # How long to keep cached data
-  
-  paths:
-    metadata_file: "data/metadata/Org Unit Metadata.xlsx"
-3. Add Metadata Files
-Place your organizational unit metadata Excel file in:
-data/metadata/Org Unit Metadata.xlsx
-Usage
-Running the Shiny Dashboard
-r# Launch interactive dashboard
-shiny::runApp("app/app.R")
-Generating Reports
-r# Generate epidemiological report
-rmarkdown::render("reports/epi_report.Rmd")
+## 🧪 Synthetic Data (for demo & testing)
+EpiOne ships with a synthetic data mode so you can run the dashboard and the R Markdown report. Real data is never shared publicly and is not used in this repository.
 
-# With custom parameters
-rmarkdown::render(
-  "reports/epi_report.Rmd",
-  params = list(
-    config_env = "production",
-    force_refresh = TRUE,
-    target_year = 2024
-  )
-)
-Data Loading Options
-Option 1: Live API Data
-yaml# In config.yml
-cache:
-  use_cache: false
-Option 2: Cached Data
-yaml# In config.yml  
-cache:
-  use_cache: true
-  cache_expiry_hours: 24
-Key Functions
-Data Loading
+## ⚡ Quick Start
+Run the dashboard:
+```r
+shiny::runApp("app")
+```
+Render a report (example):
+```r
+rmarkdown::render("reports/epi_report.Rmd", params = list(country_code = "synthetic"))
+```
+First-time setup (optional):
+```r
+source("scripts/install_requirements.R")
+```
+For full setup and synthetic data options, see [Quick Start Docs](docs/quick_start.md).
 
-load_dhis2_data() - Main data loading function with caching
-fetch_dhis2_data() - Direct API calls to DHIS2
-prepare_register() - Clean and process raw data
+## 📊 Data Requirements
+Minimum fields: `datevisit`, `morbidity`, `orgunit`. Recommended: `sex`, `age/age_group`, `admin1`, `admin2`.  
+Detailed column recognition and data formatting guidance are available in [Data Requirements Docs](docs/data_requirements.md).
 
-Analysis
+## 🧾 Disease Taxonomy
+EpiOne uses two complementary taxonomies: an IMC canonical taxonomy for program-aligned classification, and WHO ICD‑11 mapping for standards-based coding drawn from the official API. See [Taxonomy Docs](taxonomy/README_Taxonomy.md) for details.
 
-create_disease_categories() - Categorize morbidity conditions
-create_indicator_variables() - Generate surveillance indicators
-get_summary_statistics() - Generate report summaries
+## ✅ Data Quality & Column Recognition
+Ensure essential fields are present and parseable. Recommended fields improve visualizations. For comprehensive quality checks and column mapping examples, refer to [Data Quality Docs](docs/data_quality.md).
 
-Visualization
+## 🗂️ Project Structure
+```text
+epi-one/
+├── app/                    # Dashboard app components
+├── modules/                # Feature modules
+├── R/                      # Analysis helpers and loaders
+├── reports/                # R Markdown reports
+├── taxonomy/               # Disease taxonomies and ICD‑11 integration
+├── config/                 # Configuration files
+├── data/                   # Local cache, dictionaries, shapefiles
+└── docs/                   # Documentation and guides
+```
 
-plot_consultations_over_time() - Temporal trend analysis
-plot_disease_distribution() - Disease burden visualization
-plot_geographic_distribution() - Geographic analysis
+## 🤖 AI-Enabled Insights (Optional)
+Minimal config to enable AI summaries and EpiBot chatbot:
+```yaml
+default:
+  ai_features:
+    enabled: yes
+    summary_generation:
+      enabled: yes
+  epibot_features:
+    enabled: yes
+```
+See `ai_customization.yml` and [EpiBot Docs](docs/epibot.md) for setup and privacy considerations.
 
-Configuration Options
-Environment Variables
-For production, consider using environment variables:
-r# Set environment variables
-Sys.setenv(DHIS2_USERNAME = "your_username")
-Sys.setenv(DHIS2_PASSWORD = "your_secure_password")
-Cache Management
-r# Force refresh data
-load_dhis2_data(force_refresh = TRUE)
+> 🛠️ **Local AI** – Run <code>ollama serve</code> (or your preferred self-hosted LLM) and update <code>config/config.yml</code> with the model name.
 
-# Check cache status
-file.info("data/raw/dhis2_data.rds")
+## 📦 Modules Overview
 
-Contact
-[Jennifer Majer: jlmajer@internationalmedicalcorps.org]
+| Module                          | Purpose                                | Docs                               |
+|--------------------------------|--------------------------------------|-----------------------------------|
+| `app/`                         | Shiny app shell and runtime           | `app/README.md`                   |
+| `modules/mod_geographic.R`     | Geography and maps                    | `modules/mod_geographic/README.md`|
+| `modules/mod_disease_surveillance.R` | Disease surveillance views           | `modules/mod_disease_surveillance/README.md` |
+| `modules/mod_time_trends.R`    | Temporal analytics                    | `modules/mod_time_trends/README.md`|
+| `modules/mod_epibot.R`         | EpiBot chatbot                       | `docs/epibot.md`                   |
+| `reports/epi_report.Rmd`       | Full epidemiological report          | `reports/README.md`                |
+| `taxonomy/`                    | ICD‑11 mapping and base taxonomy     | `taxonomy/README_Taxonomy.md`     |
+
+## 🤝 Contributing & Support
+Issues and PRs welcome. See module READMEs for coding style and boundaries. For questions or collaborations, please open an issue.
+
+## 🌍 Partnerships & Data Sharing
+To explore a data sharing agreement with IMC for research or co-development, please reach out to research@internationalmedicalcorps.org.

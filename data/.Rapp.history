@@ -1,0 +1,7 @@
+load("/Users/jennifermajer/Documents/GitHub/epidashboard/data/dhis2_data_test.rds")
+load("/Users/jennifermajer/Documents/GitHub/epidashboard/data/dhis2_cache.rds")
+load("/Users/jennifermajer/Documents/GitHub/epidashboard/data/dhis2_cache_temp.rds")
+load("/Users/jennifermajer/Documents/GitHub/epidashboard/data/dhis2_data (original).rds")
+load("/Users/jennifermajer/Documents/GitHub/epidashboard/data/dhis2_data (original 2).rds")
+load("/Users/jennifermajer/Documents/GitHub/epidashboard/data/dhis2_data (original 2).rds")
+load("/Users/jennifermajer/Documents/GitHub/epidashboard/data/dhis2_cache.rds")

@@ -1,65 +1,196 @@
-### 📂 `config/config.yml`
-
 default:
-  # DHIS2 API Configuration
-  dhis2:
-    base_url: "https://dhis.medmis.org/api/"
-    username: "jlmajer"
-    password: "Shelly==West88!!" # Replace with the actual password or use environment variable
-    timeout: 30
-    retry_attempts: 3
-  
-  # Data Processing Parameters
-  parameters:
-    event_date: "2024-01-01_2025-07-30"
-    
-  # Caching Configuration
+  taxonomy:
+    base_system: icd11
+    base_file: icd11/disease_mappings.yml
+    icd11_version: 2023-01
+    icd11_enabled: yes
+  icd11:
+    enabled: yes
+    api_base_url: https://id.who.int/icd/release/11/2023-01
+    token_url: https://icdaccessmanagement.who.int/connect/token
+    cache_dir: data/icd11_cache
+    cache_expiry_days: 30.0
+    timeout_seconds: 30.0
+    use_cache: yes
+    require_credentials: no
   cache:
-    use_cache: true
-    cache_file: "data/dhis2_data.rds"
-    cache_expiry_hours: 24
-  
-  # File Paths
+    use_cache: yes
+    cache_file: data/dhis2_cache_{country}.rds
+    cache_expiry_hours: 72
+    allow_stale_on_error: yes
+  app:
+    title: Multi-Country Epidemiological Dashboard (ICD-11)
+    version: 2.0.0
+    contact: jlmajer@internationalmedicalcorps.org
+    debug: no
+    default_country: syria
+    supported_countries:
+    - syria
+    - yemen
+    - south_sudan
+    taxonomy_system: ICD-11 (2023-01 Release)
   paths:
-    data_dir: "data"
-    output_dir: "output"
-    metadata_file: "data/Org Unit Metadata.xlsx"
-    shapefile_dir: "data/shapefiles/syr_admin_shp_utf8_20240711"
-  
-  # DHIS2 Dimensions
+    taxonomy_dir: taxonomy
+    data_dir: data
+    output_dir: output
+    metadata_file: data/metadata/Org Unit Metadata.xlsx
+    shapefile_dir: data/shapefiles
+  epibot_features:
+    enabled: yes
+    model: gpt-3.5-turbo
+    max_tokens: 1500
+    temperature: 0.7
+    system_prompt: You are EpiBot, an AI assistant specializing in epidemiological data analysis for health surveillance. Provide clear, actionable insights based on the health consultation data.
+  ai_features:
+    enabled: yes
+    provider: ollama
+    context_setting: syria_humanitarian
+    country_contexts:
+      syria:
+        context_setting: syria_humanitarian
+        system_prompt_suffix: Focus on conflict-affected populations, IDPs, and returnees in Syria.
+      yemen:
+        context_setting: yemen_humanitarian
+        system_prompt_suffix: Focus on conflict-affected populations, cholera outbreaks, and malnutrition in Yemen.
+      south_sudan:
+        context_setting: south_sudan_humanitarian
+        system_prompt_suffix: Focus on displaced populations, host communities, returnees, and endemic diseases in South Sudan.
+    summary_generation:
+      enabled: yes
+      summary_types:
+      - monthly
+      - disease_trend
+      - geographic
+      - demographic
+      - facility_performance
+      quality_checks:
+        enabled: yes
+        minimum_quality_score: 60
+        expert_review_threshold: 70
+    ollama:
+      host: http://localhost:11434
+      model: llama3.2:3b
+      timeout: 120
+      temperature: 0.1
+      max_tokens: 2048
+    security:
+      audit_enabled: yes
+      audit_file: logs/ai_audit.log
+      max_query_length: 500
+  setup:
+    auto_install_deps: no
+  dhis2:
+    base_url: https://dhis.medmis.org/api/
+    username: ''
+    password: ''
+    timeout: 300
+    retry_attempts: 3
+    endpoint: analytics/events/query/Dx6ahQYI5h0.json
+  data_loaders:
+    enabled: yes
+    default_loader: country_specific
+    fallback_to_syria: yes
+    countries:
+      syria:
+        loader_type: dhis2_events
+        config_file: config/countries/syria.yml
+        cache_enabled: yes
+        cache_expiry_hours: 24
+      yemen:
+        loader_type: dhis2_aggregate
+        config_file: config/countries/yemen.yml
+        dhis2:
+          username: ''
+          password: ''
+        cache_enabled: yes
+        cache_expiry_hours: 6
+      south_sudan:
+        loader_type: excel_aggregate
+        config_file: config/countries/south_sudan.yml
+        cache_enabled: no
+  parameters:
+    date_start: '2024-11-01'
+    date_end: '2025-02-28'
+    program: Dx6ahQYI5h0
+    stage: CqrONYSlEaX
+    output_type: EVENT
+    paging: no
+    data_id_scheme: NAME
   dimensions:
-    organizational_unit: "ou:IdcO8WRgjhx"
+    organizational_unit:
+    - IdcO8WRgjhx
+    - sd0Tm5O9gYi
     program_indicators:
-      - "CqrONYSlEaX.rL9MvoCfEjs"
-      - "CqrONYSlEaX.bZHezG9dWZE"
-      - "CqrONYSlEaX.KeEN2eb3Uxd"
-      - "CqrONYSlEaX.xomZ84KPnPF"
-      - "CqrONYSlEaX.EySm2BkOyyz"
-      - "CqrONYSlEaX.MfYvkQe0aQp"
-      - "CqrONYSlEaX.geYBzCRckiq"
-      - "CqrONYSlEaX.Yg03rKOllrD"
-      - "CqrONYSlEaX.Yp9KWU8p05o"
-      - "CqrONYSlEaX.j7Yq8VaaQRI"
-      - "CqrONYSlEaX.GOTb5Nqfn94"
-      - "CqrONYSlEaX.x22jBOk9i7P"
-      - "CqrONYSlEaX.ZZg8zkt8vcP"
-      - "CqrONYSlEaX.ebqQuNdzo0R"
-      - "CqrONYSlEaX.boB5hNdgFKe"
-      - "CqrONYSlEaX.abyW9VH1KeH"
-      - "CqrONYSlEaX.SQOesNuMq8L"
+    - CqrONYSlEaX.rL9MvoCfEjs
+    - CqrONYSlEaX.bZHezG9dWZE
+    - CqrONYSlEaX.KeEN2eb3Uxd
+    - CqrONYSlEaX.xomZ84KPnPF
+    - CqrONYSlEaX.EySm2BkOyyz
+    - CqrONYSlEaX.MfYvkQe0aQp
+    - CqrONYSlEaX.geYBzCRckiq
+    - CqrONYSlEaX.Yg03rKOllrD
+    - CqrONYSlEaX.Yp9KWU8p05o
+    - CqrONYSlEaX.j7Yq8VaaQRI
+    - CqrONYSlEaX.GOTb5Nqfn94
+    - CqrONYSlEaX.x22jBOk9i7P
+    - CqrONYSlEaX.ZZg8zkt8vcP
+    - CqrONYSlEaX.ebqQuNdzo0R
+    - CqrONYSlEaX.boB5hNdgFKe
+    - CqrONYSlEaX.abyW9VH1KeH
+    - CqrONYSlEaX.SQOesNuMq8L
     other_dimensions:
-      - "n3oqmlU8mkF"
-      - "akxW4S6B5KR"
-
-# Environment-specific configurations
-development:
-  cache:
-    use_cache: true
-  logging:
-    level: "DEBUG"
-
-production:
-  cache:
-    use_cache: false
-  logging:
-    level: "INFO"
+    - n3oqmlU8mkF
+    - akxW4S6B5KR
+  advanced_analytics:
+    enabled: yes
+    predictive:
+      enabled: yes
+      default_forecast_horizon: 12
+      default_model_type: arima
+      max_forecast_horizon: 52
+    correlation:
+      enabled: yes
+      min_correlation_threshold: 0.3
+      max_diseases_selection: 15
+      default_time_window: month
+    climate:
+      enabled: yes
+      default_source: nasa_power
+      openweather:
+        base_url: https://api.openweathermap.org/data/3.0
+      nasa_power:
+        base_url: https://power.larc.nasa.gov/api
+      default_location:
+        lat: 33.5138
+        lon: 36.2765
+        name: Syria
+      country_locations:
+        syria:
+          lat: 33.5138
+          lon: 36.2765
+          name: Syria
+        yemen:
+          lat: 15.5527
+          lon: 48.5164
+          name: Yemen
+        south_sudan:
+          lat: 6.877
+          lon: 31.307
+          name: South Sudan
+      variables:
+      - temperature
+      - precipitation
+      - humidity
+      - wind_speed
+      - pressure
+      alerts:
+        temperature_high: 35
+        precipitation_heavy: 50
+        humidity_high: 80
+  testing:
+    use_synthetic_data: yes
+    synthetic:
+      country: syria
+      n: 5000
+      months: 12
+      facilities: 60

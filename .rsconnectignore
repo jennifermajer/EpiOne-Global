@@ -1,0 +1,12 @@
+# Exclude dev / big / non-runtime files
+^ai_customization/
+^reports/logs/
+^notebooks?/
+^tests?/
+^docs?/
+^README\.md$
+^setup_ai_features\.R$
+^\.Rproj\.user/
+^\.git/
+^\.gitignore$
+^\.DS_Store$
